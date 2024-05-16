@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+h1,h2,h6{
+    text-align: center;
+}
+
+.content h6{
+    font-weight: bold;
+}
+
+
+.navbar{
+    background-color:#1e3685;
+    
+}
+
+.nav-link:hover{
+    color:silver;
+    
+}
+
+.nav-link{
+    color: white;
+}
+
+.main-content {
+
+    padding: 20px;
+}
+
+.content {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    
+}
+
+.form-group{
+    display: flex;
+}
+
+.dropdown {
+    width: 100%; /* Устанавливаем ширину dropdown */
+    max-width: 100%; /* Ограничиваем максимальную ширину */
+}
+
+.dropdown-menu {
+    width: 100%; /* Устанавливаем ширину dropdown-menu */
+}
+
+.dropdown-item {
+    white-space: normal; /* Разрешаем перенос текста */
+}
+
+#Filter{
+    padding: 10px;
+    border: thin solid #0059b3;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#historyTable{
+    margin-top: 20px;;
+}
+
+#adapterStatus{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    color: white;
+    
+}
+
+#adapterStatusIcon{
+    color: rgb(75, 179, 75);
+}
