@@ -56,6 +56,14 @@ h1,h2,h6{
     white-space: normal; /* Разрешаем перенос текста */
 }
 
+.circle-green {
+    color: rgb(75, 179, 75);
+}
+
+.circle-red {
+    color: rgb(179, 75, 75);
+}
+
 #Filter{
     padding: 10px;
     border: thin solid #0059b3;
@@ -75,6 +83,3 @@ h1,h2,h6{
     
 }
 
-#adapterStatusIcon{
-    color: rgb(75, 179, 75);
-}

@@ -48,6 +48,15 @@ h1,h6{
     border-radius: 20px;
 }
 
+.circle-green {
+    color: rgb(75, 179, 75);
+}
+
+.circle-red {
+    color: rgb(179, 75, 75);
+}
+
+
 #header{
     margin-bottom: 20px;
     margin-left: 25px;
@@ -66,8 +75,10 @@ h1,h6{
     
 }
 
+/*
 #adapterStatusIcon{
     color: rgb(75, 179, 75);
 }
+*/
 
 

@@ -37,7 +37,8 @@
                             <li class="nav-item">
                                 <h6>
                                     Адаптер
-                                    <i id="adapterStatusIcon" class="fa-solid fa-circle"></i>
+                                    <i th:if="${isAdapterRunning}" class="fa-solid fa-circle circle-green"></i>
+                                    <i th:unless="${isAdapterRunning}" class="fa-solid fa-circle circle-red"></i>
                                 </h6>
                             </li>
 

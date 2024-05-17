@@ -48,16 +48,20 @@ textarea{
     display: flex;
 }
 
+.circle-green {
+    color: rgb(75, 179, 75);
+}
+
+.circle-red {
+    color: rgb(179, 75, 75);
+}
+
 #adapterStatus{
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
     color: white;
     
-}
-
-#adapterStatusIcon{
-    color: rgb(75, 179, 75);
 }
 
 #submitButtonContainer{
