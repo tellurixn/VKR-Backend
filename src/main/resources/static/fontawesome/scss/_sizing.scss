@@ -3,7 +3,7 @@
 
 // literal magnification scale
 @for $i from 1 through 10 {
-  .#{$fa-css-prefix}-#{$i}x {
+  .#{$fa-css-prefix}-#{$i}generated {
     font-size: $i * 1em;
   }
 }
