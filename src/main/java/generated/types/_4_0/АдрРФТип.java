@@ -46,34 +46,34 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "\u0410\u0434\u0440\u0420\u0424\u0422\u0438\u043f")
+@XmlType(name = "АдрРФТип")
 public class АдрРФТип {
 
-    @XmlAttribute(name = "\u0410\u0434\u0440\u0422\u0435\u043a\u0441\u0442", required = true)
+    @XmlAttribute(name = "АдрТекст", required = true)
     protected String адрТекст;
-    @XmlAttribute(name = "\u0418\u0434\u041d\u043e\u043c")
+    @XmlAttribute(name = "ИдНом")
     protected String идНом;
-    @XmlAttribute(name = "\u041e\u041a\u0422\u041c\u041e")
+    @XmlAttribute(name = "ОКТМО")
     protected String октмо;
-    @XmlAttribute(name = "\u0418\u043d\u0434\u0435\u043a\u0441")
+    @XmlAttribute(name = "Индекс")
     protected String индекс;
-    @XmlAttribute(name = "\u041a\u043e\u0434\u0420\u0435\u0433\u0438\u043e\u043d", required = true)
+    @XmlAttribute(name = "КодРегион", required = true)
     protected String кодРегион;
-    @XmlAttribute(name = "\u041d\u0430\u0438\u043c\u0420\u0435\u0433\u0438\u043e\u043d", required = true)
+    @XmlAttribute(name = "НаимРегион", required = true)
     protected String наимРегион;
-    @XmlAttribute(name = "\u0420\u0430\u0439\u043e\u043d")
+    @XmlAttribute(name = "Район")
     protected String район;
-    @XmlAttribute(name = "\u0413\u043e\u0440\u043e\u0434")
+    @XmlAttribute(name = "Город")
     protected String город;
-    @XmlAttribute(name = "\u041d\u0430\u0441\u0435\u043b\u041f\u0443\u043d\u043a\u0442")
+    @XmlAttribute(name = "НаселПункт")
     protected String населПункт;
-    @XmlAttribute(name = "\u0423\u043b\u0438\u0446\u0430")
+    @XmlAttribute(name = "Улица")
     protected String улица;
-    @XmlAttribute(name = "\u0414\u043e\u043c")
+    @XmlAttribute(name = "Дом")
     protected String дом;
-    @XmlAttribute(name = "\u041a\u043e\u0440\u043f\u0443\u0441")
+    @XmlAttribute(name = "Корпус")
     protected String корпус;
-    @XmlAttribute(name = "\u041a\u0432\u0430\u0440\u0442")
+    @XmlAttribute(name = "Кварт")
     protected String кварт;
 
     /**

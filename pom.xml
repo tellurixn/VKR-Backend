@@ -97,8 +97,8 @@
 				<configuration>
 					<outputDirectory>${project.basedir}src/main/java</outputDirectory>
 					<sources>
-						<source>${project.basedir}/src/main/resources/schemas/commons</source>
-						<source>${project.basedir}/src/main/resources/schemas</source>
+						<source>${project.basedir}/src/main/resources/schemas/egrip/commons</source>
+						<source>${project.basedir}/src/main/resources/schemas/egrip</source>
 					</sources>
 				</configuration>
 			</plugin>

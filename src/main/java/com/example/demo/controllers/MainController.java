@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 @Controller
 public class MainController {
-
     private final String serviceName = "AdapterSMEV";
 
     @GetMapping("/")
@@ -37,6 +36,11 @@ public class MainController {
     }
 
 
+    /**
+     * Функция для проверки состояния службы ИУА СМЭВ3
+     * @param serviceName название службы
+     * @return true, если служба адаптера запущена, false, если не запущена
+     */
     public boolean checkIfServiceRunning(String serviceName) {
         Process process;
         try {

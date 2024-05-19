@@ -70,18 +70,18 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "\u0410\u0434\u0440\u041c\u0416\u0422\u0438\u043f", propOrder = {
-    "\u0430\u0434\u0440\u041c\u0416\u0420\u0424",
-    "\u0430\u0434\u0440\u041c\u0416\u0418\u043d",
-    "\u0430\u0434\u0440\u041c\u0416\u041a\u043e\u043d\u0432"
+@XmlType(name = "АдрМЖТип", propOrder = {
+    "адрМЖРФ",
+    "адрМЖИн",
+    "адрМЖКонв"
 })
 public class АдрМЖТип {
 
-    @XmlElement(name = "\u0410\u0434\u0440\u041c\u0416\u0420\u0424")
+    @XmlElement(name = "АдрМЖРФ")
     protected АдрМЖТип.АдрМЖРФ адрМЖРФ;
-    @XmlElement(name = "\u0410\u0434\u0440\u041c\u0416\u0418\u043d")
+    @XmlElement(name = "АдрМЖИн")
     protected АдрМЖТип.АдрМЖИн адрМЖИн;
-    @XmlElement(name = "\u0410\u0434\u0440\u041c\u0416\u041a\u043e\u043d\u0432")
+    @XmlElement(name = "АдрМЖКонв")
     protected String адрМЖКонв;
 
     /**
@@ -188,17 +188,17 @@ public class АдрМЖТип {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "\u043f\u0440\u041e\u041a\u0421\u041c",
-        "\u043e\u043a\u0441\u043c",
-        "\u0430\u0434\u0440\u0422\u0435\u043a\u0441\u0442"
+        "прОКСМ",
+        "оксм",
+        "адрТекст"
     })
     public static class АдрМЖИн {
 
-        @XmlElement(name = "\u041f\u0440\u041e\u041a\u0421\u041c")
+        @XmlElement(name = "ПрОКСМ")
         protected String прОКСМ;
-        @XmlElement(name = "\u041e\u041a\u0421\u041c")
+        @XmlElement(name = "ОКСМ")
         protected String оксм;
-        @XmlElement(name = "\u0410\u0434\u0440\u0422\u0435\u043a\u0441\u0442", required = true)
+        @XmlElement(name = "АдрТекст", required = true)
         protected String адрТекст;
 
         /**
@@ -299,17 +299,17 @@ public class АдрМЖТип {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "\u0430\u0434\u0440\u0420\u0424\u0424\u0418\u0410\u0421",
-        "\u0430\u0434\u0440\u0420\u0424\u041d\u0435\u0424\u0418\u0410\u0421",
-        "\u0430\u0434\u0440\u0422\u0435\u043a\u0441\u0442"
+        "адрРФФИАС",
+        "адрРФНеФИАС",
+        "адрТекст"
     })
     public static class АдрМЖРФ {
 
-        @XmlElement(name = "\u0410\u0434\u0440\u0420\u0424\u0424\u0418\u0410\u0421")
+        @XmlElement(name = "АдрРФФИАС")
         protected АдрРФТип адрРФФИАС;
-        @XmlElement(name = "\u0410\u0434\u0440\u0420\u0424\u041d\u0435\u0424\u0418\u0410\u0421")
+        @XmlElement(name = "АдрРФНеФИАС")
         protected АдрРФТип адрРФНеФИАС;
-        @XmlElement(name = "\u0410\u0434\u0440\u0422\u0435\u043a\u0441\u0442")
+        @XmlElement(name = "АдрТекст")
         protected String адрТекст;
 
         /**

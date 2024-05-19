@@ -41,21 +41,21 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "\u0423\u0434\u041b\u0438\u0447\u043d\u0424\u041b\u0421\u041d\u0422\u0438\u043f")
+@XmlType(name = "УдЛичнФЛСНТип")
 public class УдЛичнФЛСНТип {
 
-    @XmlAttribute(name = "\u041a\u043e\u0434\u0412\u0438\u0434\u0414\u043e\u043a", required = true)
+    @XmlAttribute(name = "КодВидДок", required = true)
     protected String кодВидДок;
-    @XmlAttribute(name = "\u0421\u0435\u0440\u0414\u043e\u043a")
+    @XmlAttribute(name = "СерДок")
     protected String серДок;
-    @XmlAttribute(name = "\u041d\u043e\u043c\u0414\u043e\u043a", required = true)
+    @XmlAttribute(name = "НомДок", required = true)
     protected String номДок;
-    @XmlAttribute(name = "\u0414\u0430\u0442\u0430\u0414\u043e\u043a")
+    @XmlAttribute(name = "ДатаДок")
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar датаДок;
-    @XmlAttribute(name = "\u0412\u044b\u0434\u0414\u043e\u043a")
+    @XmlAttribute(name = "ВыдДок")
     protected String выдДок;
-    @XmlAttribute(name = "\u041a\u043e\u0434\u0412\u044b\u0434\u0414\u043e\u043a")
+    @XmlAttribute(name = "КодВыдДок")
     protected String кодВыдДок;
 
     /**

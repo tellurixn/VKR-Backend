@@ -41,19 +41,19 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "\u0417\u0430\u0441\u0432\u0438\u0434\u0422\u0438\u043f")
+@XmlType(name = "ЗасвидТип")
 public class ЗасвидТип {
 
-    @XmlAttribute(name = "\u0420\u0435\u0433\u041d\u043e\u043c\u0420\u0435\u0435\u0441\u0442\u0440\u041d\u043e\u0442\u0430\u0440", required = true)
+    @XmlAttribute(name = "РегНомРеестрНотар", required = true)
     protected String регНомРеестрНотар;
-    @XmlAttribute(name = "\u0414\u0430\u0442\u0430\u041d\u043e\u0442\u0430\u0440\u0414\u0435\u0439\u0441\u0442\u0432", required = true)
+    @XmlAttribute(name = "ДатаНотарДейств", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar датаНотарДейств;
-    @XmlAttribute(name = "\u0424\u0418\u041e\u041d\u043e\u0442\u0430\u0440", required = true)
+    @XmlAttribute(name = "ФИОНотар", required = true)
     protected String фиоНотар;
-    @XmlAttribute(name = "\u0424\u0418\u041e\u041f\u0435\u0440\u0435\u0432\u043e\u0434")
+    @XmlAttribute(name = "ФИОПеревод")
     protected String фиоПеревод;
-    @XmlAttribute(name = "\u041a\u043e\u043b\u041b\u0438\u0441\u0442\u0414\u043e\u043a")
+    @XmlAttribute(name = "КолЛистДок")
     protected BigInteger колЛистДок;
 
     /**

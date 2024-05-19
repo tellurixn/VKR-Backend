@@ -64,24 +64,24 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "\u0414\u0430\u0442\u0430\u0414\u043e\u043a\u0422\u0438\u043f", propOrder = {
-    "\u043f\u0440\u0414\u0435\u043d\u044c",
-    "\u0434\u0435\u043d\u044c",
-    "\u043f\u0440\u041c\u0435\u0441\u044f\u0446",
-    "\u043c\u0435\u0441\u044f\u0446",
-    "\u0433\u043e\u0434"
+@XmlType(name = "ДатаДокТип", propOrder = {
+    "прДень",
+    "день",
+    "прМесяц",
+    "месяц",
+    "год"
 })
 public class ДатаДокТип {
 
-    @XmlElement(name = "\u041f\u0440\u0414\u0435\u043d\u044c")
+    @XmlElement(name = "ПрДень")
     protected String прДень;
-    @XmlElement(name = "\u0414\u0435\u043d\u044c")
+    @XmlElement(name = "День")
     protected BigInteger день;
-    @XmlElement(name = "\u041f\u0440\u041c\u0435\u0441\u044f\u0446")
+    @XmlElement(name = "ПрМесяц")
     protected String прМесяц;
-    @XmlElement(name = "\u041c\u0435\u0441\u044f\u0446")
+    @XmlElement(name = "Месяц")
     protected BigInteger месяц;
-    @XmlElement(name = "\u0413\u043e\u0434", required = true)
+    @XmlElement(name = "Год", required = true)
     protected XMLGregorianCalendar год;
 
     /**

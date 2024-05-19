@@ -35,12 +35,12 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "\u041e\u0440\u0433\u0430\u043d\u0417\u0410\u0413\u0421\u041d\u0422\u0438\u043f")
+@XmlType(name = "ОрганЗАГСНТип")
 public class ОрганЗАГСНТип {
 
-    @XmlAttribute(name = "\u041d\u0430\u0438\u043c\u0417\u0410\u0413\u0421", required = true)
+    @XmlAttribute(name = "НаимЗАГС", required = true)
     protected String наимЗАГС;
-    @XmlAttribute(name = "\u041a\u043e\u0434\u0417\u0410\u0413\u0421")
+    @XmlAttribute(name = "КодЗАГС")
     protected String кодЗАГС;
 
     /**

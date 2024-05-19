@@ -51,28 +51,28 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "\u041c\u0435\u0441\u0442\u043e\u0422\u0438\u043f")
+@XmlType(name = "МестоТип")
 public class МестоТип {
 
-    @XmlAttribute(name = "\u041f\u0440\u0438\u0437\u043d\u041c\u0435\u0441\u0442\u043e", required = true)
+    @XmlAttribute(name = "ПризнМесто", required = true)
     protected String признМесто;
-    @XmlAttribute(name = "\u041c\u0435\u0441\u0442\u043e\u0422\u0435\u043a\u0441\u0442", required = true)
+    @XmlAttribute(name = "МестоТекст", required = true)
     protected String местоТекст;
-    @XmlAttribute(name = "\u041a\u043e\u0434\u0421\u0442\u0440\u0430\u043d\u044b")
+    @XmlAttribute(name = "КодСтраны")
     protected String кодСтраны;
-    @XmlAttribute(name = "\u041d\u0430\u0438\u043c\u0421\u0442\u0440\u0430\u043d\u044b")
+    @XmlAttribute(name = "НаимСтраны")
     protected String наимСтраны;
-    @XmlAttribute(name = "\u0420\u0435\u0433\u0438\u043e\u043d")
+    @XmlAttribute(name = "Регион")
     protected String регион;
-    @XmlAttribute(name = "\u041d\u0430\u0438\u043c\u0421\u0443\u0431\u044a\u0435\u043a\u0442")
+    @XmlAttribute(name = "НаимСубъект")
     protected String наимСубъект;
-    @XmlAttribute(name = "\u0420\u0430\u0439\u043e\u043d")
+    @XmlAttribute(name = "Район")
     protected String район;
-    @XmlAttribute(name = "\u0413\u043e\u0440\u043e\u0434")
+    @XmlAttribute(name = "Город")
     protected String город;
-    @XmlAttribute(name = "\u041d\u0430\u0441\u0435\u043b\u041f\u0443\u043d\u043a\u0442")
+    @XmlAttribute(name = "НаселПункт")
     protected String населПункт;
-    @XmlAttribute(name = "\u041e\u041a\u0422\u041c\u041e")
+    @XmlAttribute(name = "ОКТМО")
     protected String октмо;
 
     /**

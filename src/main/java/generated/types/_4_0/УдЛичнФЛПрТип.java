@@ -98,49 +98,49 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "\u0423\u0434\u041b\u0438\u0447\u043d\u0424\u041b\u041f\u0440\u0422\u0438\u043f", propOrder = {
-    "\u043f\u0440\u041a\u043e\u0434\u0412\u0438\u0434\u0414\u043e\u043a",
-    "\u043a\u043e\u0434\u0412\u0438\u0434\u0414\u043e\u043a",
-    "\u043f\u0440\u0421\u0435\u0440\u0414\u043e\u043a",
-    "\u0441\u0435\u0440\u0414\u043e\u043a",
-    "\u043f\u0440\u041d\u043e\u043c\u0414\u043e\u043a",
-    "\u043d\u043e\u043c\u0414\u043e\u043a",
-    "\u043f\u0440\u0414\u0430\u0442\u0430\u0414\u043e\u043a",
-    "\u0434\u0430\u0442\u0430\u0414\u043e\u043a\u041a\u0430\u043b\u0435\u043d\u0434",
-    "\u0434\u0430\u0442\u0430\u0414\u043e\u043a\u041d\u0435\u043f\u043e\u043b\u043d",
-    "\u043f\u0440\u0412\u044b\u0434\u0414\u043e\u043a",
-    "\u0432\u044b\u0434\u0414\u043e\u043a",
-    "\u043f\u0440\u041a\u043e\u0434\u0412\u044b\u0434\u0414\u043e\u043a",
-    "\u043a\u043e\u0434\u0412\u044b\u0434\u0414\u043e\u043a"
+@XmlType(name = "УдЛичнФЛПрТип", propOrder = {
+    "прКодВидДок",
+    "кодВидДок",
+    "прСерДок",
+    "серДок",
+    "прНомДок",
+    "номДок",
+    "прДатаДок",
+    "датаДокКаленд",
+    "датаДокНеполн",
+    "прВыдДок",
+    "выдДок",
+    "прКодВыдДок",
+    "кодВыдДок"
 })
 public class УдЛичнФЛПрТип {
 
-    @XmlElement(name = "\u041f\u0440\u041a\u043e\u0434\u0412\u0438\u0434\u0414\u043e\u043a")
+    @XmlElement(name = "ПрКодВидДок")
     protected String прКодВидДок;
-    @XmlElement(name = "\u041a\u043e\u0434\u0412\u0438\u0434\u0414\u043e\u043a")
+    @XmlElement(name = "КодВидДок")
     protected String кодВидДок;
-    @XmlElement(name = "\u041f\u0440\u0421\u0435\u0440\u0414\u043e\u043a")
+    @XmlElement(name = "ПрСерДок")
     protected String прСерДок;
-    @XmlElement(name = "\u0421\u0435\u0440\u0414\u043e\u043a")
+    @XmlElement(name = "СерДок")
     protected String серДок;
-    @XmlElement(name = "\u041f\u0440\u041d\u043e\u043c\u0414\u043e\u043a")
+    @XmlElement(name = "ПрНомДок")
     protected String прНомДок;
-    @XmlElement(name = "\u041d\u043e\u043c\u0414\u043e\u043a")
+    @XmlElement(name = "НомДок")
     protected String номДок;
-    @XmlElement(name = "\u041f\u0440\u0414\u0430\u0442\u0430\u0414\u043e\u043a")
+    @XmlElement(name = "ПрДатаДок")
     protected String прДатаДок;
-    @XmlElement(name = "\u0414\u0430\u0442\u0430\u0414\u043e\u043a\u041a\u0430\u043b\u0435\u043d\u0434")
+    @XmlElement(name = "ДатаДокКаленд")
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar датаДокКаленд;
-    @XmlElement(name = "\u0414\u0430\u0442\u0430\u0414\u043e\u043a\u041d\u0435\u043f\u043e\u043b\u043d")
+    @XmlElement(name = "ДатаДокНеполн")
     protected ДатаДокТип датаДокНеполн;
-    @XmlElement(name = "\u041f\u0440\u0412\u044b\u0434\u0414\u043e\u043a")
+    @XmlElement(name = "ПрВыдДок")
     protected String прВыдДок;
-    @XmlElement(name = "\u0412\u044b\u0434\u0414\u043e\u043a")
+    @XmlElement(name = "ВыдДок")
     protected String выдДок;
-    @XmlElement(name = "\u041f\u0440\u041a\u043e\u0434\u0412\u044b\u0434\u0414\u043e\u043a")
+    @XmlElement(name = "ПрКодВыдДок")
     protected String прКодВыдДок;
-    @XmlElement(name = "\u041a\u043e\u0434\u0412\u044b\u0434\u0414\u043e\u043a")
+    @XmlElement(name = "КодВыдДок")
     protected String кодВыдДок;
 
     /**

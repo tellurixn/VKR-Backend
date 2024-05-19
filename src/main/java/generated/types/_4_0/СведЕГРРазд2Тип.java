@@ -292,18 +292,18 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "\u0421\u0432\u0435\u0434\u0415\u0413\u0420\u0420\u0430\u0437\u04342\u0422\u0438\u043f", propOrder = {
-    "\u043f\u0440\u0421\u0432\u0423\u0432\u0435\u0434\u043e\u043c\u043b",
-    "\u0441\u0432\u0423\u0432\u0435\u0434\u043e\u043c\u043b",
-    "\u0441\u0432\u0414\u043e\u043a\u0418\u043d"
+@XmlType(name = "СведЕГРРазд2Тип", propOrder = {
+    "прСвУведомл",
+    "свУведомл",
+    "свДокИн"
 })
 public class СведЕГРРазд2Тип {
 
-    @XmlElement(name = "\u041f\u0440\u0421\u0432\u0423\u0432\u0435\u0434\u043e\u043c\u043b")
+    @XmlElement(name = "ПрСвУведомл")
     protected String прСвУведомл;
-    @XmlElement(name = "\u0421\u0432\u0423\u0432\u0435\u0434\u043e\u043c\u043b")
+    @XmlElement(name = "СвУведомл")
     protected СведЕГРРазд2Тип.СвУведомл свУведомл;
-    @XmlElement(name = "\u0421\u0432\u0414\u043e\u043a\u0418\u043d", required = true)
+    @XmlElement(name = "СвДокИн", required = true)
     protected СведЕГРРазд2Тип.СвДокИн свДокИн;
 
     /**
@@ -570,23 +570,23 @@ public class СведЕГРРазд2Тип {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "\u043f\u0440\u041a\u043e\u0434\u041e\u041a\u0421\u041c",
-        "\u043a\u043e\u0434\u041e\u041a\u0421\u041c",
-        "\u043d\u0430\u0438\u043c\u0421\u0442\u0440\u0430\u043d\u044b",
-        "\u0440\u0435\u043a\u0432\u0438\u0437\u0418\u043d\u0414\u043e\u043a",
-        "\u044e\u0440\u0417\u043d\u0430\u0447\u0414\u043e\u043a"
+        "прКодОКСМ",
+        "кодОКСМ",
+        "наимСтраны",
+        "реквизИнДок",
+        "юрЗначДок"
     })
     public static class СвДокИн {
 
-        @XmlElement(name = "\u041f\u0440\u041a\u043e\u0434\u041e\u041a\u0421\u041c")
+        @XmlElement(name = "ПрКодОКСМ")
         protected String прКодОКСМ;
-        @XmlElement(name = "\u041a\u043e\u0434\u041e\u041a\u0421\u041c")
+        @XmlElement(name = "КодОКСМ")
         protected String кодОКСМ;
-        @XmlElement(name = "\u041d\u0430\u0438\u043c\u0421\u0442\u0440\u0430\u043d\u044b", required = true)
+        @XmlElement(name = "НаимСтраны", required = true)
         protected String наимСтраны;
-        @XmlElement(name = "\u0420\u0435\u043a\u0432\u0438\u0437\u0418\u043d\u0414\u043e\u043a", required = true)
+        @XmlElement(name = "РеквизИнДок", required = true)
         protected СведЕГРРазд2Тип.СвДокИн.РеквизИнДок реквизИнДок;
-        @XmlElement(name = "\u042e\u0440\u0417\u043d\u0430\u0447\u0414\u043e\u043a", required = true)
+        @XmlElement(name = "ЮрЗначДок", required = true)
         protected СведЕГРРазд2Тип.СвДокИн.ЮрЗначДок юрЗначДок;
 
         /**
@@ -772,38 +772,38 @@ public class СведЕГРРазд2Тип {
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
-            "\u043f\u0440\u041d\u0430\u0438\u043c\u0414\u043e\u043a\u0422\u0435\u043a\u0441\u0442",
-            "\u043d\u0430\u0438\u043c\u0414\u043e\u043a\u0422\u0435\u043a\u0441\u0442",
-            "\u043f\u0440\u041d\u043e\u043c\u0435\u0440",
-            "\u043d\u043e\u043c\u0435\u0440",
-            "\u043f\u0440\u0414\u0430\u0442\u0430",
-            "\u0434\u0430\u0442\u0430\u041a\u0430\u043b\u0435\u043d\u0434",
-            "\u0434\u0430\u0442\u0430\u0414\u043e\u043a",
-            "\u043f\u0440\u041d\u0430\u0438\u043c\u041e\u0440\u0433\u0430\u043d",
-            "\u043d\u0430\u0438\u043c\u041e\u0440\u0433\u0430\u043d"
+            "прНаимДокТекст",
+            "наимДокТекст",
+            "прНомер",
+            "номер",
+            "прДата",
+            "датаКаленд",
+            "датаДок",
+            "прНаимОрган",
+            "наимОрган"
         })
         public static class РеквизИнДок {
 
-            @XmlElement(name = "\u041f\u0440\u041d\u0430\u0438\u043c\u0414\u043e\u043a\u0422\u0435\u043a\u0441\u0442")
+            @XmlElement(name = "ПрНаимДокТекст")
             protected String прНаимДокТекст;
-            @XmlElement(name = "\u041d\u0430\u0438\u043c\u0414\u043e\u043a\u0422\u0435\u043a\u0441\u0442")
+            @XmlElement(name = "НаимДокТекст")
             protected String наимДокТекст;
-            @XmlElement(name = "\u041f\u0440\u041d\u043e\u043c\u0435\u0440")
+            @XmlElement(name = "ПрНомер")
             protected String прНомер;
-            @XmlElement(name = "\u041d\u043e\u043c\u0435\u0440")
+            @XmlElement(name = "Номер")
             protected String номер;
-            @XmlElement(name = "\u041f\u0440\u0414\u0430\u0442\u0430")
+            @XmlElement(name = "ПрДата")
             protected String прДата;
-            @XmlElement(name = "\u0414\u0430\u0442\u0430\u041a\u0430\u043b\u0435\u043d\u0434")
+            @XmlElement(name = "ДатаКаленд")
             @XmlSchemaType(name = "date")
             protected XMLGregorianCalendar датаКаленд;
-            @XmlElement(name = "\u0414\u0430\u0442\u0430\u0414\u043e\u043a")
+            @XmlElement(name = "ДатаДок")
             protected ДатаДокТип датаДок;
-            @XmlElement(name = "\u041f\u0440\u041d\u0430\u0438\u043c\u041e\u0440\u0433\u0430\u043d")
+            @XmlElement(name = "ПрНаимОрган")
             protected String прНаимОрган;
-            @XmlElement(name = "\u041d\u0430\u0438\u043c\u041e\u0440\u0433\u0430\u043d")
+            @XmlElement(name = "НаимОрган")
             protected String наимОрган;
-            @XmlAttribute(name = "\u0422\u0438\u043f\u0414\u043e\u043a", required = true)
+            @XmlAttribute(name = "ТипДок", required = true)
             protected String типДок;
 
             /**
@@ -1167,38 +1167,38 @@ public class СведЕГРРазд2Тип {
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
-            "\u043f\u0440\u041f\u043e\u0434\u043f\u0418\u043d",
-            "\u0441\u0432\u041f\u043e\u0434\u043f\u0422\u0435\u043a\u0441\u0442",
-            "\u043f\u0440\u0417\u0430\u0441\u0432\u0438\u0434\u0414\u043e\u043a",
-            "\u0437\u0430\u0441\u0432\u0438\u0434\u0414\u043e\u043a",
-            "\u043f\u0440\u0417\u0430\u0441\u0432\u0438\u0434\u041f\u0435\u0440\u0435\u0432\u043e\u0434",
-            "\u0437\u0430\u0441\u0432\u0438\u0434\u041f\u0435\u0440\u0435\u0432\u043e\u0434",
-            "\u0441\u0432\u041e\u0442\u043a\u0430\u0437\u041b\u0435\u0433\u0430\u043b\u0438\u0437",
-            "\u043b\u0435\u0433\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u044f"
+            "прПодпИн",
+            "свПодпТекст",
+            "прЗасвидДок",
+            "засвидДок",
+            "прЗасвидПеревод",
+            "засвидПеревод",
+            "свОтказЛегализ",
+            "легализация"
         })
         public static class ЮрЗначДок {
 
-            @XmlElement(name = "\u041f\u0440\u041f\u043e\u0434\u043f\u0418\u043d")
+            @XmlElement(name = "ПрПодпИн")
             protected String прПодпИн;
-            @XmlElement(name = "\u0421\u0432\u041f\u043e\u0434\u043f\u0422\u0435\u043a\u0441\u0442")
+            @XmlElement(name = "СвПодпТекст")
             protected String свПодпТекст;
-            @XmlElement(name = "\u041f\u0440\u0417\u0430\u0441\u0432\u0438\u0434\u0414\u043e\u043a")
+            @XmlElement(name = "ПрЗасвидДок")
             protected String прЗасвидДок;
-            @XmlElement(name = "\u0417\u0430\u0441\u0432\u0438\u0434\u0414\u043e\u043a")
+            @XmlElement(name = "ЗасвидДок")
             protected ЗасвидТип засвидДок;
-            @XmlElement(name = "\u041f\u0440\u0417\u0430\u0441\u0432\u0438\u0434\u041f\u0435\u0440\u0435\u0432\u043e\u0434")
+            @XmlElement(name = "ПрЗасвидПеревод")
             protected String прЗасвидПеревод;
-            @XmlElement(name = "\u0417\u0430\u0441\u0432\u0438\u0434\u041f\u0435\u0440\u0435\u0432\u043e\u0434")
+            @XmlElement(name = "ЗасвидПеревод")
             protected ЗасвидТип засвидПеревод;
-            @XmlElement(name = "\u0421\u0432\u041e\u0442\u043a\u0430\u0437\u041b\u0435\u0433\u0430\u043b\u0438\u0437")
+            @XmlElement(name = "СвОтказЛегализ")
             protected String свОтказЛегализ;
-            @XmlElement(name = "\u041b\u0435\u0433\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u044f")
+            @XmlElement(name = "Легализация")
             protected СведЕГРРазд2Тип.СвДокИн.ЮрЗначДок.Легализация легализация;
-            @XmlAttribute(name = "\u041a\u043e\u043b\u041b\u0438\u0441\u0442\u0414\u043e\u043a")
+            @XmlAttribute(name = "КолЛистДок")
             protected BigInteger колЛистДок;
-            @XmlAttribute(name = "\u0421\u0432\u041e\u0442\u0442\u0438\u0441\u043a\u041f\u0435\u0447", required = true)
+            @XmlAttribute(name = "СвОттискПеч", required = true)
             protected String свОттискПеч;
-            @XmlAttribute(name = "\u0421\u0432\u041b\u0435\u0433\u0430\u043b", required = true)
+            @XmlAttribute(name = "СвЛегал", required = true)
             protected String свЛегал;
 
             /**
@@ -1516,27 +1516,27 @@ public class СведЕГРРазд2Тип {
              */
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "", propOrder = {
-                "\u043f\u0440\u041e\u0440\u0433\u0430\u043d\u041b\u0435\u0433\u0430\u043b",
-                "\u043e\u0440\u0433\u0430\u043d\u041b\u0435\u0433\u0430\u043b",
-                "\u043f\u0440\u0414\u0430\u0442\u0430\u041b\u0435\u0433\u0430\u043b",
-                "\u0434\u0430\u0442\u0430\u041b\u0435\u0433\u0430\u043b",
-                "\u043f\u0440\u041d\u043e\u043c\u0435\u0440\u041b\u0435\u0433\u0430\u043b",
-                "\u043d\u043e\u043c\u0435\u0440\u041b\u0435\u0433\u0430\u043b"
+                "прОрганЛегал",
+                "органЛегал",
+                "прДатаЛегал",
+                "датаЛегал",
+                "прНомерЛегал",
+                "номерЛегал"
             })
             public static class Легализация {
 
-                @XmlElement(name = "\u041f\u0440\u041e\u0440\u0433\u0430\u043d\u041b\u0435\u0433\u0430\u043b")
+                @XmlElement(name = "ПрОрганЛегал")
                 protected String прОрганЛегал;
-                @XmlElement(name = "\u041e\u0440\u0433\u0430\u043d\u041b\u0435\u0433\u0430\u043b")
+                @XmlElement(name = "ОрганЛегал")
                 protected String органЛегал;
-                @XmlElement(name = "\u041f\u0440\u0414\u0430\u0442\u0430\u041b\u0435\u0433\u0430\u043b")
+                @XmlElement(name = "ПрДатаЛегал")
                 protected String прДатаЛегал;
-                @XmlElement(name = "\u0414\u0430\u0442\u0430\u041b\u0435\u0433\u0430\u043b")
+                @XmlElement(name = "ДатаЛегал")
                 @XmlSchemaType(name = "date")
                 protected XMLGregorianCalendar датаЛегал;
-                @XmlElement(name = "\u041f\u0440\u041d\u043e\u043c\u0435\u0440\u041b\u0435\u0433\u0430\u043b")
+                @XmlElement(name = "ПрНомерЛегал")
                 protected String прНомерЛегал;
-                @XmlElement(name = "\u041d\u043e\u043c\u0435\u0440\u041b\u0435\u0433\u0430\u043b")
+                @XmlElement(name = "НомерЛегал")
                 protected String номерЛегал;
 
                 /**
@@ -1763,28 +1763,28 @@ public class СведЕГРРазд2Тип {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "\u043f\u0440\u041a\u043e\u0434\u0412\u0438\u0434\u0423\u0432\u0435\u0434",
-        "\u043a\u043e\u0434\u0412\u0438\u0434\u0423\u0432\u0435\u0434",
-        "\u043f\u0440\u0414\u0430\u0442\u0430\u0423\u0432\u0435\u0434",
-        "\u0434\u0430\u0442\u0430\u0423\u0432\u0435\u0434",
-        "\u0441\u0432\u0435\u0434\u0417\u0410\u0413\u0421\u0423\u0432\u0435\u0434"
+        "прКодВидУвед",
+        "кодВидУвед",
+        "прДатаУвед",
+        "датаУвед",
+        "сведЗАГСУвед"
     })
     public static class СвУведомл {
 
-        @XmlElement(name = "\u041f\u0440\u041a\u043e\u0434\u0412\u0438\u0434\u0423\u0432\u0435\u0434")
+        @XmlElement(name = "ПрКодВидУвед")
         protected String прКодВидУвед;
-        @XmlElement(name = "\u041a\u043e\u0434\u0412\u0438\u0434\u0423\u0432\u0435\u0434")
+        @XmlElement(name = "КодВидУвед")
         protected String кодВидУвед;
-        @XmlElement(name = "\u041f\u0440\u0414\u0430\u0442\u0430\u0423\u0432\u0435\u0434")
+        @XmlElement(name = "ПрДатаУвед")
         protected String прДатаУвед;
-        @XmlElement(name = "\u0414\u0430\u0442\u0430\u0423\u0432\u0435\u0434")
+        @XmlElement(name = "ДатаУвед")
         @XmlSchemaType(name = "date")
         protected XMLGregorianCalendar датаУвед;
-        @XmlElement(name = "\u0421\u0432\u0435\u0434\u0417\u0410\u0413\u0421\u0423\u0432\u0435\u0434", required = true)
+        @XmlElement(name = "СведЗАГСУвед", required = true)
         protected СведЕГРРазд2Тип.СвУведомл.СведЗАГСУвед сведЗАГСУвед;
-        @XmlAttribute(name = "\u0421\u043f\u043ec\u041f\u043e\u0434", required = true)
+        @XmlAttribute(name = "СпоcПод", required = true)
         protected String споcПод;
-        @XmlAttribute(name = "\u041a\u043e\u043b\u041b\u0438\u0441\u0442\u0414\u043e\u043a")
+        @XmlAttribute(name = "КолЛистДок")
         protected BigInteger колЛистДок;
 
         /**
@@ -1989,22 +1989,22 @@ public class СведЕГРРазд2Тип {
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
-            "\u043e\u0440\u0433\u0430\u043d\u0417\u0410\u0413\u0421",
-            "\u043f\u0440\u0424\u0418\u041e\u041e\u0442\u0432",
-            "\u0444\u0438\u043e\u041e\u0442\u0432"
+            "органЗАГС",
+            "прФИООтв",
+            "фиоОтв"
         })
         public static class СведЗАГСУвед {
 
-            @XmlElement(name = "\u041e\u0440\u0433\u0430\u043d\u0417\u0410\u0413\u0421", required = true)
+            @XmlElement(name = "ОрганЗАГС", required = true)
             protected ОрганЗАГСТип органЗАГС;
-            @XmlElement(name = "\u041f\u0440\u0424\u0418\u041e\u041e\u0442\u0432")
+            @XmlElement(name = "ПрФИООтв")
             protected String прФИООтв;
-            @XmlElement(name = "\u0424\u0418\u041e\u041e\u0442\u0432")
+            @XmlElement(name = "ФИООтв")
             protected ФИОПрТип фиоОтв;
-            @XmlAttribute(name = "\u0414\u0430\u0442\u0430\u041f\u0440\u0438\u043d\u044f\u0442", required = true)
+            @XmlAttribute(name = "ДатаПринят", required = true)
             @XmlSchemaType(name = "date")
             protected XMLGregorianCalendar датаПринят;
-            @XmlAttribute(name = "\u0414\u043e\u043b\u0436\u043d\u041e\u0442\u0432")
+            @XmlAttribute(name = "ДолжнОтв")
             protected String должнОтв;
 
             /**

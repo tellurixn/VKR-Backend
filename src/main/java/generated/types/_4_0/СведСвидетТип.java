@@ -77,33 +77,33 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "\u0421\u0432\u0435\u0434\u0421\u0432\u0438\u0434\u0435\u0442\u0422\u0438\u043f", propOrder = {
-    "\u043f\u0440\u0421\u0435\u0440\u0438\u044f\u0421\u0432\u0438\u0434\u0435\u0442",
-    "\u0441\u0435\u0440\u0438\u044f\u0421\u0432\u0438\u0434\u0435\u0442",
-    "\u043f\u0440\u041d\u043e\u043c\u0435\u0440\u0421\u0432\u0438\u0434\u0435\u0442",
-    "\u043d\u043e\u043c\u0435\u0440\u0421\u0432\u0438\u0434\u0435\u0442",
-    "\u043f\u0440\u0414\u0430\u0442\u0430\u0412\u044b\u0434\u0421\u0432\u0438\u0434\u0435\u0442",
-    "\u0434\u0430\u0442\u0430\u0412\u044b\u0434\u0421\u0432\u0438\u0434\u0435\u0442",
-    "\u0434\u0430\u0442\u0430\u0412\u044b\u0434\u0421\u0432\u0438\u0434\u0435\u0442\u0414\u043e\u043a"
+@XmlType(name = "СведСвидетТип", propOrder = {
+    "прСерияСвидет",
+    "серияСвидет",
+    "прНомерСвидет",
+    "номерСвидет",
+    "прДатаВыдСвидет",
+    "датаВыдСвидет",
+    "датаВыдСвидетДок"
 })
 public class СведСвидетТип {
 
-    @XmlElement(name = "\u041f\u0440\u0421\u0435\u0440\u0438\u044f\u0421\u0432\u0438\u0434\u0435\u0442")
+    @XmlElement(name = "ПрСерияСвидет")
     protected String прСерияСвидет;
-    @XmlElement(name = "\u0421\u0435\u0440\u0438\u044f\u0421\u0432\u0438\u0434\u0435\u0442")
+    @XmlElement(name = "СерияСвидет")
     protected String серияСвидет;
-    @XmlElement(name = "\u041f\u0440\u041d\u043e\u043c\u0435\u0440\u0421\u0432\u0438\u0434\u0435\u0442")
+    @XmlElement(name = "ПрНомерСвидет")
     protected String прНомерСвидет;
-    @XmlElement(name = "\u041d\u043e\u043c\u0435\u0440\u0421\u0432\u0438\u0434\u0435\u0442")
+    @XmlElement(name = "НомерСвидет")
     protected String номерСвидет;
-    @XmlElement(name = "\u041f\u0440\u0414\u0430\u0442\u0430\u0412\u044b\u0434\u0421\u0432\u0438\u0434\u0435\u0442")
+    @XmlElement(name = "ПрДатаВыдСвидет")
     protected String прДатаВыдСвидет;
-    @XmlElement(name = "\u0414\u0430\u0442\u0430\u0412\u044b\u0434\u0421\u0432\u0438\u0434\u0435\u0442")
+    @XmlElement(name = "ДатаВыдСвидет")
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar датаВыдСвидет;
-    @XmlElement(name = "\u0414\u0430\u0442\u0430\u0412\u044b\u0434\u0421\u0432\u0438\u0434\u0435\u0442\u0414\u043e\u043a")
+    @XmlElement(name = "ДатаВыдСвидетДок")
     protected ДатаДокТип датаВыдСвидетДок;
-    @XmlAttribute(name = "\u0422\u0438\u043f\u0421\u0432\u0438\u0434\u0435\u0442", required = true)
+    @XmlAttribute(name = "ТипСвидет", required = true)
     protected String типСвидет;
 
     /**

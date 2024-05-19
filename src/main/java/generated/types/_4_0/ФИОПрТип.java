@@ -65,27 +65,27 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "\u0424\u0418\u041e\u041f\u0440\u0422\u0438\u043f", propOrder = {
-    "\u0444\u0430\u043c\u0438\u043b\u0438\u044f",
-    "\u043f\u0440\u0424\u0430\u043c\u0438\u043b\u0438\u044f",
-    "\u0438\u043c\u044f",
-    "\u043f\u0440\u0418\u043c\u044f",
-    "\u043e\u0442\u0447\u0435\u0441\u0442\u0432\u043e",
-    "\u043f\u0440\u041e\u0442\u0447\u0435\u0441\u0442\u0432\u043e"
+@XmlType(name = "ФИОПрТип", propOrder = {
+    "фамилия",
+    "прФамилия",
+    "имя",
+    "прИмя",
+    "отчество",
+    "прОтчество"
 })
 public class ФИОПрТип {
 
-    @XmlElement(name = "\u0424\u0430\u043c\u0438\u043b\u0438\u044f")
+    @XmlElement(name = "Фамилия")
     protected String фамилия;
-    @XmlElement(name = "\u041f\u0440\u0424\u0430\u043c\u0438\u043b\u0438\u044f")
+    @XmlElement(name = "ПрФамилия")
     protected String прФамилия;
-    @XmlElement(name = "\u0418\u043c\u044f")
+    @XmlElement(name = "Имя")
     protected String имя;
-    @XmlElement(name = "\u041f\u0440\u0418\u043c\u044f")
+    @XmlElement(name = "ПрИмя")
     protected String прИмя;
-    @XmlElement(name = "\u041e\u0442\u0447\u0435\u0441\u0442\u0432\u043e")
+    @XmlElement(name = "Отчество")
     protected String отчество;
-    @XmlElement(name = "\u041f\u0440\u041e\u0442\u0447\u0435\u0441\u0442\u0432\u043e")
+    @XmlElement(name = "ПрОтчество")
     protected String прОтчество;
 
     /**

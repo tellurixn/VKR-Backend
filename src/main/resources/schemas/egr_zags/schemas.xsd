@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2017 rel. 3 sp1 (x64) (http://www.altova.com) by lic@gnivc.ru (AO GNIVC) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn://x-artefacts-zags-fatalinf/root/112-52/4.0.1" xmlns:fnst="urn://x-artefacts-zags-fatalinf/types/4.0.1" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:usch="http://www.unisoftware.ru/schematron-extensions" xmlns:ns1="urn://x-artefacts-zags-fatalinf/root/112-52/4.0.1" targetNamespace="urn://generated-artefacts-zags-fatalinf/root/112-52/4.0.1" elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<xs:import namespace="urn://x-artefacts-zags-fatalinf/types/4.0.1" schemaLocation="./commons/zags-fatalinf-types.xsd"/>
+	<xs:import namespace="urn://x-artefacts-zags-fatalinf/types/4.0.1" schemaLocation="commonsags-fatalinf-types.xsd"/>
 	<xs:element name="FATALINFRequest">
 		<xs:annotation>
 			<!---************************************************************************************************************************************************************-->
