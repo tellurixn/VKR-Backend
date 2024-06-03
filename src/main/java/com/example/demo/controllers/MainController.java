@@ -1,10 +1,14 @@
 package com.example.demo.controllers;
 
 
+import com.example.demo.models.ServiceRequest;
 import com.example.demo.models.root.FATALINFRequest;
 import com.example.demo.models.types.ОрганЗАГСНТип;
 import com.example.demo.models.types.УдЛичнФЛСНТип;
 import com.example.demo.models.types.ФИОПрТип;
+import com.example.demo.repositories.ServiceRequestRepository;
+import com.example.demo.repositories.ServiceResponseRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -35,6 +39,12 @@ public class MainController {
     public static final String SEND_URL = "http://localhost:7590/ws/send";
     public static final String GET_URL = "http://localhost:7590/ws/get";
     public static final String FIND_URL = "http://localhost:7590/ws/find";
+
+    @Autowired
+    ServiceRequestRepository serviceRequestRepository;
+
+    @Autowired
+    ServiceResponseRepository serviceResponseRepository;
 
     @GetMapping("/")
     public String index(Model model){
