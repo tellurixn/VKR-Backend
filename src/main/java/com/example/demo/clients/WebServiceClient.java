@@ -1,19 +1,20 @@
 package com.example.demo.clients;
 
-import generated.ru.gov.smev.artefacts.x.services.service_adapter.SMEVServiceAdapterService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class WebServiceClient {
 
-    private SMEVServiceAdapterService smevServiceAdapterService;
-    private String endpoint;
-
-    public void setSMEVServiceAdapterService(SMEVServiceAdapterService smevServiceAdapterService) {
-        this.smevServiceAdapterService = smevServiceAdapterService;
-    }
-
-    public void setEndpoint(String endpoint) {
-        this.endpoint = endpoint;
-    }
+//    private SMEVServiceAdapterService smevServiceAdapterService;
+//    private String endpoint;
+//
+//    public void setSMEVServiceAdapterService(SMEVServiceAdapterService smevServiceAdapterService) {
+//        this.smevServiceAdapterService = smevServiceAdapterService;
+//    }
+//
+//    public void setEndpoint(String endpoint) {
+//        this.endpoint = endpoint;
+//    }
 
 //    public String sendData(String data) {
 //        try {

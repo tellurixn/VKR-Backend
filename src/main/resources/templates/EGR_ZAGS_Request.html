@@ -56,7 +56,7 @@
                 <div class="col-12">
                     <div class="content">
                         <h2>Предоставление из ЕГР ЗАГС по запросу сведений о смерти (4.0.1)</h2>
-                        <form method="post" action="#" class="request-form">
+                        <form method="post" action="/egr_zags" class="request-form">
                             
                             <h5>
                                 <i id="toggleIconUpRequest" class="fa-solid fa-chevron-up" aria-hidden="true" style="display: none;"></i>
@@ -72,7 +72,7 @@
                                             Идентификатор запроса, сформированный запрашивающей стороной
                                         </label>
                                         <div class="col-8">
-                                            <input type="text" class="form-control" id="requestId" 
+                                            <input type="text" class="form-control" id="requestId" name="requestId"
                                             value="0bde2079-eded-11ea-952d-00155d01aa22" required><br>
                                         </div>
                                     </div>
@@ -81,7 +81,7 @@
                                             КолДок
                                         </label>
                                         <div class="col-8">
-                                            <input type="number" class="form-control" id="colDoc" 
+                                            <input type="number" class="form-control" id="colDoc" name="colDoc"
                                             value="1" required><br>
                                         </div>
                                     </div>
@@ -90,7 +90,7 @@
                                             Тип АГС
                                         </label>
                                         <div class="col-8">
-                                            <input type="number" class="form-control" id="AGSType" 
+                                            <input type="number" class="form-control" id="AGSType" name="AGSType"
                                             value="07" required><br>
                                         </div>
                                     </div>
@@ -109,7 +109,7 @@
                                                 ЕГР ЗАГС по справочнику СНПОСН
                                             </label>
                                             <div class="col-8">
-                                                <input type="number" class="form-control" id="codeOsn" 
+                                                <input type="number" class="form-control" id="codeOsn" name="codeOsn"
                                                 value="01" required><br>
                                             </div>
                                         </div>
@@ -120,7 +120,7 @@
                                                 (При наличии)
                                             </label>
                                             <div class="col-8">
-                                                <textarea type="text" class="form-control" id="orgRaspDoc"></textarea>
+                                                <textarea  class="form-control" id="orgRaspDoc" name="orgRaspDoc"></textarea>
                                             </div>
                                             <br>
                                         </div>
@@ -138,7 +138,7 @@
                                                 Идентификатор документа
                                             </label>
                                             <div class="col-8">
-                                                <input type="text" class="form-control" id="documentId" 
+                                                <input type="text" class="form-control" id="documentId" name="documentId"
                                                 value="0bde2079-eded-11ea-952d-00155d01aa21" required><br>
                                             </div>
                                         </div>
@@ -151,7 +151,7 @@
                                                 Номер актовой записи гражданского состояния
                                             </label>
                                             <div class="col-8">
-                                                <input type="number" class="form-control" id="actNumber" 
+                                                <input type="number" class="form-control" id="actNumber" name="actNumber"
                                                 value="1234" required><br>
                                             </div>
                                         </div>
@@ -160,7 +160,7 @@
                                                 Дата составления актовой записи гражданского состояния
                                             </label>
                                             <div class="col-8">
-                                                <input type="date" class="form-control" id="docCreatedDate" 
+                                                <input type="date" class="form-control" id="docCreatedDate" name="docCreatedDate"
                                                 value="2020-05-01" required><br>
                                             </div>
                                         </div>
@@ -170,17 +170,19 @@
                                                 регистрация акта гражданского состояния
                                             </label>
                                             <div class="col-8">
-                                                <textarea  class="form-control" id="ZAGS" rows="3" required>Отдел Государственной службы записи актов гражданского состояния Республики Ингушетия Джейрахского района</textarea>
+                                                <textarea  class="form-control" id="ZAGS" name="ZAGS" rows="3" required>
+                                                    Отдел Государственной службы записи актов гражданского состояния Республики Ингушетия Джейрахского района
+                                                </textarea>
                                             </div>
                                             <br>
                                         </div>
                                         <br>
                                         <div class="form-group col-12">
-                                            <label for="requestId" class="col-4" >
+                                            <label for="ZAGSCode" class="col-4" >
                                                 Код органа органа ЗАГС
                                             </label>
                                             <div class="col-8">
-                                                <input type="text" class="form-control" id="ZAGSCode" 
+                                                <input type="text" class="form-control" id="ZAGSCode" name="ZAGSCode"
                                                 value="R0600004" required><br>
                                             </div>
                                         </div>
@@ -193,8 +195,7 @@
                                                 СНИЛС (При наличии)
                                             </label>
                                             <div class="col-8">
-                                                <input type="text" class="form-control" id="SNILS" 
-                                                value="" required><br>
+                                                <input type="text" class="form-control" id="SNILS" name="SNILS"><br>
                                             </div>
                                         </div>
                                         <div class="form-group col-12">
@@ -202,7 +203,8 @@
                                                 Фамилия (При наличии)
                                             </label>
                                             <div class="col-8">
-                                                <input type="text" class="form-control" id="LastName" value="Иванова"><br>
+                                                <input type="text" class="form-control" id="LastName" name="LastName"
+                                                value="Иванова"><br>
                                             </div>
                                         </div>
                                         <div class="form-group col-12">
@@ -210,7 +212,8 @@
                                                 Имя (При наличии)
                                             </label>
                                             <div class="col-8">
-                                                <input type="text" class="form-control" id="FirstName" value="Мария"><br>
+                                                <input type="text" class="form-control" id="FirstName" name="FirstName"
+                                                value="Мария"><br>
                                             </div>
                                         </div>
                                         <div class="form-group col-12">
@@ -218,7 +221,8 @@
                                                 Отчество (При наличии)
                                             </label>
                                             <div class="col-8">
-                                                <input type="text" class="form-control" id="Patronymic" value="Петровна"><br>
+                                                <input type="text" class="form-control" id="Patronymic" name="Patronymic"
+                                                value="Петровна"><br>
                                             </div>
                                         </div>
                                         <div class="form-group col-12">
@@ -226,7 +230,7 @@
                                                 Дата рождения (При наличии)
                                             </label>
                                             <div class="col-8">
-                                                <input type="date" class="form-control" id="birthday"><br>
+                                                <input type="date" class="form-control" id="birthday" name="birthday"><br>
                                             </div>
                                         </div>
 
@@ -245,7 +249,7 @@
                                                     Код документа, удостоверяющего личность
                                                 </label>
                                                 <div class="col-8">
-                                                    <input type="number" class="form-control" id="docCode" ><br>
+                                                    <input type="number" class="form-control" id="docCode" name="docCode"><br>
                                                 </div>
                                             </div>
                                             <div class="form-group col-12">
@@ -253,7 +257,7 @@
                                                     Серия
                                                 </label>
                                                 <div class="col-8">
-                                                    <input type="number" class="form-control" id="docSeries" ><br>
+                                                    <input type="number" class="form-control" id="docSeries" name="docSeries"><br>
                                                 </div>
                                             </div>
                                             <div class="form-group col-12">
@@ -261,7 +265,7 @@
                                                     Номер
                                                 </label>
                                                 <div class="col-8">
-                                                    <input type="number" class="form-control" id="docNumber" ><br>
+                                                    <input type="number" class="form-control" id="docNumber" name="docNumber"><br>
                                                 </div>
                                             </div>
                                             <div class="form-group col-12">
@@ -269,7 +273,7 @@
                                                     Дата выдачи
                                                 </label>
                                                 <div class="col-8">
-                                                    <input type="date" class="form-control" id="docDate"><br>
+                                                    <input type="date" class="form-control" id="docDate" name="docDate"><br>
                                                 </div>
                                             </div>
                                             <div class="form-group col-12">
@@ -277,7 +281,7 @@
                                                     Наименование органа, выдавшего документ, удостоверяющий личность
                                                 </label>
                                                 <div class="col-8">
-                                                    <textarea type="text" class="form-control" id="orgName"></textarea>
+                                                    <textarea  class="form-control" id="orgName" name="orgName"></textarea>
                                                 </div>
                                                 <br>
                                             </div>
@@ -287,7 +291,7 @@
                                                     Код подразделения органа, выдавшего документ, удостоверяющий личность
                                                 </label>
                                                 <div class="col-8">
-                                                    <input type="number" class="form-control" id="orgCode"><br>
+                                                    <input type="number" class="form-control" id="orgCode" name="orgCode"><br>
                                                 </div>
                                             </div>
                                         </div>
@@ -300,7 +304,7 @@
                                                 Субъект РФ, где зарегистрирован акт гражданского состояния (При наличии)
                                             </label>
                                             <div class="col-8">
-                                                <textarea type="text" class="form-control" id="subjectName"></textarea>
+                                                <textarea  class="form-control" id="subjectName" name="subjectName"></textarea>
                                             </div>
                                             <br>
                                         </div>
@@ -309,11 +313,13 @@
 
                                 </section>
                             </div>
+
+                            <div class="col-12" id="submitButtonContainer">
+                                <button type="submit" class="btn btn-primary" id="sendRequestButton">Отправить запрос</button>
+                            </div>
                             
                         </form><br>
-                        <div class="col-12" id="submitButtonContainer">
-                            <button type="submit" class="btn btn-primary" id="sendRequestButton">Отправить запрос</button>
-                        </div>
+
                     </div>
                 </div>
             </div>
