@@ -31,13 +31,14 @@ import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class MainController {
-    private final String serviceName = "AdapterSMEV";
-
-
+    public static final String SERVICE_NAME = "AdapterSMEV";
+    public static final String SEND_URL = "http://localhost:7590/ws/send";
+    public static final String GET_URL = "http://localhost:7590/ws/get";
+    public static final String FIND_URL = "http://localhost:7590/ws/find";
 
     @GetMapping("/")
     public String index(Model model){
-        boolean isAdapterRunning = checkIfServiceRunning(serviceName);
+        boolean isAdapterRunning = checkIfServiceRunning(SERVICE_NAME);
 
         model.addAttribute("isAdapterRunning", isAdapterRunning);
         return "index";
@@ -45,7 +46,7 @@ public class MainController {
 
     @GetMapping("/history")
     public String history(Model model){
-        boolean isAdapterRunning = checkIfServiceRunning(serviceName);
+        boolean isAdapterRunning = checkIfServiceRunning(SERVICE_NAME);
 
         model.addAttribute("isAdapterRunning", isAdapterRunning);
         return "history";
@@ -53,7 +54,7 @@ public class MainController {
 
     @GetMapping("/egr_zags")
     public String egr_zags(Model model){
-        boolean isAdapterRunning = checkIfServiceRunning(serviceName);
+        boolean isAdapterRunning = checkIfServiceRunning(SERVICE_NAME);
 
         model.addAttribute("isAdapterRunning", isAdapterRunning);
         return "EGR_ZAGS_Request";
@@ -66,6 +67,7 @@ public class MainController {
         FATALINFRequest request = new FATALINFRequest();
 
         /*Атрибуты запроса*/
+        //todo реализовать генерацию id
         request.setИдЗапрос(requestParams.get("requestId"));
         request.setКолДок(new BigInteger(requestParams.get("colDoc")));
         request.setТипАГС(requestParams.get("AGSType"));
@@ -161,6 +163,7 @@ public class MainController {
 
 
         try {
+            //Преобразование объекта запроса в xml-строку
             JAXBContext context = JAXBContext.newInstance(FATALINFRequest.class);
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
@@ -168,6 +171,8 @@ public class MainController {
             marshaller.marshal(request, sw);
             System.out.println(sw.toString());
 
+            //формирование конверта сообщения
+            //todo реализовать генерацию id для сообщений
             String json = new JsonRequest(
                     "WebService",
                     new RequestMessage(
@@ -183,13 +188,14 @@ public class MainController {
 
             System.out.println(json);
 
-            String url = "http://localhost:7590/ws/send";
+            //Отправка сообщения в ИУА
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
 
             RestTemplate restTemplate = new RestTemplate();
             HttpEntity<String> requestEntity = new HttpEntity<>(json, headers);
-            String response = restTemplate.postForObject(url, requestEntity, String.class);
+            String response = restTemplate.postForObject(SEND_URL, requestEntity, String.class);
+
             System.out.println("Response: " + response);
 
         }
