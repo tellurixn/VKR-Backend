@@ -55,6 +55,9 @@ public class MainController {
     @GetMapping("/")
     public String index(Model model){
         boolean isAdapterRunning = checkIfServiceRunning(SERVICE_NAME);
+        boolean isAdapterStarted = true;
+        if(!isAdapterRunning)
+            isAdapterStarted = startService(SERVICE_NAME);
 
         model.addAttribute("isAdapterRunning", isAdapterRunning);
         return "index";
@@ -63,6 +66,9 @@ public class MainController {
     @GetMapping("/history")
     public String history(Model model){
         boolean isAdapterRunning = checkIfServiceRunning(SERVICE_NAME);
+        boolean isAdapterStarted = true;
+        if(!isAdapterRunning)
+            isAdapterStarted = startService(SERVICE_NAME);
 
         Iterable<ServiceMessage> messages = serviceRequestRepository.findAll();
 
@@ -74,6 +80,9 @@ public class MainController {
     @GetMapping("/egr_zags")
     public String egr_zags(Model model){
         boolean isAdapterRunning = checkIfServiceRunning(SERVICE_NAME);
+        boolean isAdapterStarted = true;
+        if(!isAdapterRunning)
+            isAdapterStarted = startService(SERVICE_NAME);
 
         model.addAttribute("isAdapterRunning", isAdapterRunning);
         return "EGR_ZAGS_Request";
@@ -259,4 +268,29 @@ public class MainController {
         }
         return false;
     }
+
+    /**
+     * Функция для запуска службы ИУА СМЭВ3
+     * @param serviceName название службы
+     * @return true, если служба адаптера смогла запуститься, false - в противном случае
+     */
+    public boolean startService(String serviceName) {
+        try {
+            Process process = Runtime.getRuntime().exec("sc start " + serviceName);
+            int exitCode = process.waitFor();
+
+            if (exitCode == 0) {
+                System.out.println("Service '" + serviceName + "' started successfully.");
+                return true;
+            } else {
+                System.out.println("Failed to start service '" + serviceName + "'.");
+                return false;
+            }
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
