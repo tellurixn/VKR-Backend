@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.xml.bind.JAXBContext;
@@ -39,6 +40,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
+@RequestMapping("/")
 public class MainController {
     public static final String SERVICE_NAME = "AdapterSMEV";
     public static final String IS_NAME = "WebService";
