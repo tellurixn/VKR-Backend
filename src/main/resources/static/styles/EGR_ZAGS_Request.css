@@ -37,7 +37,7 @@ textarea{
 
 .content {
     background-color: white;
-    padding: 20px;
+    padding: 20px 20px 0px 20px;
     border: thick solid #0059b3;
     border-radius: 15px;
     margin-top: 20px;
@@ -78,6 +78,7 @@ textarea{
 }
 
 #sendRequestButton{
+    margin-top: 10px;
     background-color: #1e3685;
     border-color: #0059b3;
 }

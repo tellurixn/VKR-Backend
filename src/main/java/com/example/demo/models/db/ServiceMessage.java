@@ -7,6 +7,7 @@ import lombok.*;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Table(name = "messages")
 @Entity
@@ -51,5 +52,13 @@ public class ServiceMessage {
         this.vs_name = vs_name;
         this.message_type = message_type;
     }
+
+    public String getFormattedDate(){
+        String pattern = "dd.MM.yyyy HH:mm";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+
+        return this.created_at.format(formatter);
+    }
+
 
 }

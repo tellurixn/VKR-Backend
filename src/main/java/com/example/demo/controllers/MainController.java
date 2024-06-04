@@ -36,6 +36,7 @@ import java.util.UUID;
 import com.example.demo.models.jsons.JsonSendRequest;
 import com.example.demo.models.jsons.JsonSendRequest.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class MainController {
@@ -79,7 +80,7 @@ public class MainController {
     }
 
     @PostMapping("/egr_zags")
-    public String sendEgrZagsRequest(@RequestParam Map<String,String> requestParams)
+    public RedirectView sendEgrZagsRequest(@RequestParam Map<String,String> requestParams)
             throws DatatypeConfigurationException {
 
         FATALINFRequest request = new FATALINFRequest();
@@ -187,6 +188,7 @@ public class MainController {
             StringWriter sw = new StringWriter();
             marshaller.marshal(request, sw);
 
+            //System.out.println(sw);
 
             //формирование конверта сообщения
             String clientId = UUID.randomUUID().toString();
@@ -233,7 +235,7 @@ public class MainController {
             e.printStackTrace();
         }
 
-        return "index";
+        return new RedirectView("/");
     }
 
 
