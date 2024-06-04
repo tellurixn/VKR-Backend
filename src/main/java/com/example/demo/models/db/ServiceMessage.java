@@ -1,24 +1,24 @@
-package com.example.demo.models;
+package com.example.demo.models.db;
 
 
 import jakarta.persistence.*;
 import lombok.*;
 
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
-@Table(name = "mnemonic_send")
+@Table(name = "messages")
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ServiceRequest {
+public class ServiceMessage {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    UUID uid;//первичный ключ
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    BigInteger uid;//первичный ключ
 
     @Column(nullable = true, unique = false)
     String id;//id клинета
@@ -32,14 +32,24 @@ public class ServiceRequest {
     @Column(nullable = false, unique = false)
     LocalDateTime created_at;//время создания
 
-    public ServiceRequest(String id,
+    @Column(nullable = false, unique = false)
+    String vs_name;//вид сведений
+
+    @Column(nullable = false, unique = false)
+    String message_type;//тип взаимодействия
+
+    public ServiceMessage(String id,
                           String content,
                           String status,
-                          LocalDateTime created_at){
+                          LocalDateTime created_at,
+                          String vs_name,
+                          String message_type){
         this.id = id;
         this.content = content;
         this.status = status;
         this.created_at = created_at;
+        this.vs_name = vs_name;
+        this.message_type = message_type;
     }
 
 }

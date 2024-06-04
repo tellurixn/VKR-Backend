@@ -6,10 +6,15 @@
 //
 
 
-package com.example.demo.models.root;
+package com.example.demo.models.xmls.root;
 
 
-import com.example.demo.models.types.*;
+
+import com.example.demo.models.xmls.types.ДатаДокТип;
+import com.example.demo.models.xmls.types.ОрганЗАГСНТип;
+import com.example.demo.models.xmls.types.УдЛичнФЛСНТип;
+import com.example.demo.models.xmls.types.ФИОПрТип;
+
 import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigInteger;

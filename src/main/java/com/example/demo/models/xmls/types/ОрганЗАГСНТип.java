@@ -6,7 +6,7 @@
 //
 
 
-package com.example.demo.models.types;
+package com.example.demo.models.xmls.types;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -17,16 +17,16 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * Сведения об органе, которым произведена государственная регистрация акта гражданского состояния
  * 
- * <p>Java class for ОрганЗАГСТип complex type.
+ * <p>Java class for ОрганЗАГСНТип complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ОрганЗАГСТип"&gt;
+ * &lt;complexType name="ОрганЗАГСНТип"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;attribute name="НаимЗАГС" use="required" type="{urn://x-artefacts-zags-fatalinf/types/4.0.1}string-1000" /&gt;
- *       &lt;attribute name="КодЗАГС" use="required" type="{urn://x-artefacts-zags-fatalinf/types/4.0.1}string-8" /&gt;
+ *       &lt;attribute name="КодЗАГС" type="{urn://x-artefacts-zags-fatalinf/types/4.0.1}string-8" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -35,12 +35,12 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ОрганЗАГСТип")
-public class ОрганЗАГСТип {
+@XmlType(name = "ОрганЗАГСНТип")
+public class ОрганЗАГСНТип {
 
     @XmlAttribute(name = "НаимЗАГС", required = true)
     protected String наимЗАГС;
-    @XmlAttribute(name = "КодЗАГС", required = true)
+    @XmlAttribute(name = "КодЗАГС")
     protected String кодЗАГС;
 
     /**

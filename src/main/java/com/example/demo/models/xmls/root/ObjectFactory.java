@@ -6,7 +6,7 @@
 //
 
 
-package com.example.demo.models.root;
+package com.example.demo.models.xmls.root;
 
 import javax.xml.bind.annotation.XmlRegistry;
 

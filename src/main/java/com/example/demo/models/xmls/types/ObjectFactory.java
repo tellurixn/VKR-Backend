@@ -6,7 +6,7 @@
 //
 
 
-package com.example.demo.models.types;
+package com.example.demo.models.xmls.types;
 
 import javax.xml.bind.annotation.XmlRegistry;
 

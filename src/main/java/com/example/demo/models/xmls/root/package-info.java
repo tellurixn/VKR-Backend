@@ -5,5 +5,5 @@
 // Generated on: 2024.05.31 at 01:01:39 PM GMT+07:00 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "urn://x-artefacts-zags-fatalinf/types/4.0.1", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package com.example.demo.models.types;
+@javax.xml.bind.annotation.XmlSchema(namespace = "urn://x-artefacts-zags-fatalinf/root/112-52/4.0.1", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+package com.example.demo.models.xmls.root;

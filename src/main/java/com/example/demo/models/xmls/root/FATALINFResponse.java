@@ -6,9 +6,10 @@
 //
 
 
-package com.example.demo.models.root;
+package com.example.demo.models.xmls.root;
 
-import com.example.demo.models.types.*;
+
+import com.example.demo.models.xmls.types.*;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;

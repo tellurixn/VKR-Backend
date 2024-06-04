@@ -1,12 +1,12 @@
-package com.example.demo.models;
+package com.example.demo.models.jsons;
 
 import com.google.gson.Gson;
 
-public class JsonRequest {
+public class JsonSendRequest {
     private String itSystem;
     private RequestMessage requestMessage;
 
-    public JsonRequest(String itSystem, RequestMessage requestMessage) {
+    public JsonSendRequest(String itSystem, RequestMessage requestMessage) {
         this.itSystem = itSystem;
         this.requestMessage = requestMessage;
     }

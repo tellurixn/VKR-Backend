@@ -1,13 +1,13 @@
 package com.example.demo.controllers;
 
 
-import com.example.demo.models.ServiceRequest;
-import com.example.demo.models.root.FATALINFRequest;
-import com.example.demo.models.types.ОрганЗАГСНТип;
-import com.example.demo.models.types.УдЛичнФЛСНТип;
-import com.example.demo.models.types.ФИОПрТип;
-import com.example.demo.repositories.ServiceRequestRepository;
-import com.example.demo.repositories.ServiceResponseRepository;
+import com.example.demo.models.db.ServiceMessage;
+import com.example.demo.models.xmls.root.FATALINFRequest;
+import com.example.demo.models.xmls.types.ОрганЗАГСНТип;
+import com.example.demo.models.xmls.types.УдЛичнФЛСНТип;
+import com.example.demo.models.xmls.types.ФИОПрТип;
+import com.example.demo.repositories.ServiceMessageRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -27,24 +27,29 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.math.BigInteger;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import java.util.Map;
 import java.util.Scanner;
-import com.example.demo.models.JsonRequest;
-import com.example.demo.models.JsonRequest.*;
+import java.util.UUID;
+
+import com.example.demo.models.jsons.JsonSendRequest;
+import com.example.demo.models.jsons.JsonSendRequest.*;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class MainController {
     public static final String SERVICE_NAME = "AdapterSMEV";
+    public static final String IS_NAME = "WebService";
+    public static final String FATALINF = "Предоставление из ЕГР ЗАГС по запросу сведений о смерти";
     public static final String SEND_URL = "http://localhost:7590/ws/send";
     public static final String GET_URL = "http://localhost:7590/ws/get";
     public static final String FIND_URL = "http://localhost:7590/ws/find";
 
     @Autowired
-    ServiceRequestRepository serviceRequestRepository;
+    ServiceMessageRepository serviceRequestRepository;
 
-    @Autowired
-    ServiceResponseRepository serviceResponseRepository;
+
 
     @GetMapping("/")
     public String index(Model model){
@@ -58,6 +63,9 @@ public class MainController {
     public String history(Model model){
         boolean isAdapterRunning = checkIfServiceRunning(SERVICE_NAME);
 
+        Iterable<ServiceMessage> messages = serviceRequestRepository.findAll();
+
+        model.addAttribute("messages", messages);
         model.addAttribute("isAdapterRunning", isAdapterRunning);
         return "history";
     }
@@ -71,14 +79,13 @@ public class MainController {
     }
 
     @PostMapping("/egr_zags")
-    public String sendEgrZagsRequest(@RequestParam Map<String,String> requestParams) throws DatatypeConfigurationException {
-
+    public String sendEgrZagsRequest(@RequestParam Map<String,String> requestParams)
+            throws DatatypeConfigurationException {
 
         FATALINFRequest request = new FATALINFRequest();
 
         /*Атрибуты запроса*/
-        //todo реализовать генерацию id
-        request.setИдЗапрос(requestParams.get("requestId"));
+        request.setИдЗапрос(UUID.randomUUID().toString());
         request.setКолДок(new BigInteger(requestParams.get("colDoc")));
         request.setТипАГС(requestParams.get("AGSType"));
 
@@ -179,15 +186,15 @@ public class MainController {
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             StringWriter sw = new StringWriter();
             marshaller.marshal(request, sw);
-            System.out.println(sw.toString());
+
 
             //формирование конверта сообщения
-            //todo реализовать генерацию id для сообщений
-            String json = new JsonRequest(
+            String clientId = UUID.randomUUID().toString();
+            String sendRequest = new JsonSendRequest(
                     "WebService",
                     new RequestMessage(
                             "RequestMessageType",
-                            new RequestMetadata("00000000-0000-0000-0000-000000000000", true),
+                            new RequestMetadata(clientId, true),
                             new RequestContent(
                                     new Content(
                                             new MessagePrimaryContent(sw.toString().replaceAll("\n"," "))
@@ -196,29 +203,35 @@ public class MainController {
                     )
             ).toJson();
 
-            System.out.println(json);
+
+
+            //todo GET_RESPONSE_BY_REQUEST_CLIENTID можно найти ответ на запрос по clientId
+
+            //Сохранение запроса в БД
+            ServiceMessage newFATALINFRequest = new ServiceMessage(
+                    clientId,
+                    sendRequest,
+                    "NEW",
+                    LocalDateTime.now(),
+                    FATALINF,
+                    "Запрос"
+            );
+            serviceRequestRepository.save(newFATALINFRequest);
 
             //Отправка сообщения в ИУА
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
 
             RestTemplate restTemplate = new RestTemplate();
-            HttpEntity<String> requestEntity = new HttpEntity<>(json, headers);
+            HttpEntity<String> requestEntity = new HttpEntity<>(sendRequest, headers);
             String response = restTemplate.postForObject(SEND_URL, requestEntity, String.class);
 
-            System.out.println("Response: " + response);
+            System.out.println("Sync response: " + response);
 
         }
         catch (javax.xml.bind.JAXBException e){
             e.printStackTrace();
         }
-
-
-
-
-
-
-
 
         return "index";
     }
