@@ -99,8 +99,8 @@ public class MainController {
 
         /*Атрибуты запроса*/
         request.setИдЗапрос(UUID.randomUUID().toString());
-        request.setКолДок(new BigInteger(requestParams.get("colDoc")));
-        request.setТипАГС(requestParams.get("AGSType"));
+        request.setКолДок(BigInteger.ONE);
+        request.setТипАГС("07");
 
         /*Сведения о нормативно-правовых основаниях запрашивающей стороны для получения сведений
         из ЕГР ЗАГС об актах гражданского состояния о смерти*/
@@ -116,7 +116,8 @@ public class MainController {
         request.setСведОсн(svedOsn);
 
         FATALINFRequest.СведЗапрос svedZapros = new FATALINFRequest.СведЗапрос();
-        svedZapros.setИдДок(requestParams.get("documentId"));
+        //svedZapros.setИдДок(requestParams.get("documentId"));
+        svedZapros.setИдДок(UUID.randomUUID().toString());
         if(requestParams.get("subjectName") == null)
             svedZapros.setПрРегионРегАГС("0");
         else{
@@ -162,28 +163,31 @@ public class MainController {
         }
         svedFL.setФИО(fio);
 
-        if(requestParams.get("birthday") == null) {
+        if(requestParams.get("birthday").isEmpty()) {
             svedFL.setПрДатаРожд("0");
         }
         else{
             svedFL.setПрДатаРожд("1");
-            LocalDate localBirthday = LocalDate.parse(requestParams.get("docCreatedDate"));
+            LocalDate localBirthday = LocalDate.parse(requestParams.get("birthday"));
             XMLGregorianCalendar xmlBirthday = DatatypeFactory.newInstance().newXMLGregorianCalendar(localBirthday.toString());
             svedFL.setДатаРождКаленд(xmlBirthday);
         }
 
 
         /*Документ, удостоверяющий личность*/
-        УдЛичнФЛСНТип udLich = new УдЛичнФЛСНТип();
-        udLich.setКодВидДок(requestParams.get("docCode"));
-        udLich.setСерДок(requestParams.get("docSeries"));
-        udLich.setНомДок(requestParams.get("docNumber"));
-        LocalDate localDocDate = LocalDate.parse(requestParams.get("docCreatedDate"));
-        XMLGregorianCalendar xmlDocDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(localDocDate.toString());
-        udLich.setДатаДок(xmlDocDate);
-        udLich.setВыдДок(requestParams.get("orgName"));
-        udLich.setКодВыдДок(requestParams.get("orgCode"));
-        svedFL.setУдЛичнФЛ(udLich);
+        if(!requestParams.get("docCode").isEmpty()) {
+            УдЛичнФЛСНТип udLich = new УдЛичнФЛСНТип();
+            udLich.setКодВидДок(requestParams.get("docCode"));
+            udLich.setСерДок(requestParams.get("docSeries"));
+            udLich.setНомДок(requestParams.get("docNumber"));
+            LocalDate localDocDate = LocalDate.parse(requestParams.get("docDate"));
+            XMLGregorianCalendar xmlDocDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(localDocDate.toString());
+            udLich.setДатаДок(xmlDocDate);
+            udLich.setВыдДок(requestParams.get("orgName"));
+            udLich.setКодВыдДок(requestParams.get("orgCode"));
+            svedFL.setУдЛичнФЛ(udLich);
+        }
+
         svedZapros.setСведФЛ(svedFL);
 
 

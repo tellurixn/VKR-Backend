@@ -64,6 +64,13 @@ iconUpRequestData.addEventListener('click', function() {
 var addDocInfoButton = document.getElementById('addDocInfoButton');
 var DocInfo = document.getElementById('DocInfo');
 
+var docCode = document.getElementById('docCode')
+var docNumber = document.getElementById('docNumber')
+var docSeries = document.getElementById('docSeries')
+var orgName = document.getElementById('orgName')
+var orgCode = document.getElementById('orgCode')
+var docDate = document.getElementById('docDate')
+
 addDocInfoButton.addEventListener('click', function(){
     if(DocInfo.style.display === 'none'){
         DocInfo.style.display = 'block';
@@ -72,5 +79,11 @@ addDocInfoButton.addEventListener('click', function(){
     else{
         DocInfo.style.display = 'none';
         addDocInfoButton.textContent ='Добавить';
+        docCode.value = '';
+        docNumber.value = '';
+        docSeries.value = '';
+        orgName.value = '';
+        orgCode.value = '';
+        docDate.value = '';
     }
 })

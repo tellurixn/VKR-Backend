@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+h2,h6{
+    text-align: center;
+}
+
+h5{
+    font-style: italic;
+}
+
+.content h6{
+    font-weight: bold;
+}
+
+textarea{
+    max-height: 125%;
+}
+
+.navbar{
+    background-color:#1e3685;
+
+}
+
+.nav-link:hover{
+    color:silver;
+
+}
+
+.nav-link{
+    color: white;
+}
+
+.main-content {
+
+    padding: 20px;
+}
+
+.content {
+    background-color: white;
+    padding: 20px;
+    border: thick solid #0059b3;
+    border-radius: 15px;
+    margin-top: 20px;
+
+}
+
+.form-group{
+    display: flex;
+}
+
+#adapterStatus{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    color: white;
+
+}
+
+#adapterStatusIcon{
+    color: rgb(75, 179, 75);
+}
+
+#submitButtonContainer{
+    display: flex;
+    justify-content: center;
+}
+
+#addDocInfoIcon{
+    color: white;
+}
+
+#codeOsn, #orgRaspDoc, #ZAGS, #subjectName, #orgName{
+    min-height: 100%;
+}
+
+#sendRequestButton{
+    background-color: #1e3685;
+    border-color: #0059b3;
+}
