@@ -24,6 +24,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.math.BigInteger;
@@ -192,25 +193,25 @@ public class MainController {
 
 
         try {
+            String clientId = UUID.randomUUID().toString();
+
             //Преобразование объекта запроса в xml-строку
             JAXBContext context = JAXBContext.newInstance(FATALINFRequest.class);
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            StringWriter sw = new StringWriter();
-            marshaller.marshal(request, sw);
+            StringWriter originalXmlContent = new StringWriter();
+            marshaller.marshal(request, originalXmlContent);
 
-            //System.out.println(sw);
 
-            //формирование конверта сообщения
-            String clientId = UUID.randomUUID().toString();
-            String sendRequest = new JsonSendRequest(
+            //Формирование конверта сообщения
+            String requestToSend = new JsonSendRequest(
                     "WebService",
                     new RequestMessage(
                             "RequestMessageType",
                             new RequestMetadata(clientId, true),
                             new RequestContent(
                                     new Content(
-                                            new MessagePrimaryContent(sw.toString().replaceAll("\n"," "))
+                                            new MessagePrimaryContent(originalXmlContent.toString().replaceAll("\n"," "))
                                     )
                             )
                     )
@@ -218,12 +219,11 @@ public class MainController {
 
 
 
-            //todo GET_RESPONSE_BY_REQUEST_CLIENTID можно найти ответ на запрос по clientId
-
             //Сохранение запроса в БД
             ServiceMessage newFATALINFRequest = new ServiceMessage(
                     clientId,
-                    sendRequest,
+                    requestToSend,
+                    originalXmlContent.toString(),
                     "Новый",
                     LocalDateTime.now(),
                     FATALINF,
@@ -236,7 +236,7 @@ public class MainController {
             headers.setContentType(MediaType.APPLICATION_JSON);
 
             RestTemplate restTemplate = new RestTemplate();
-            HttpEntity<String> requestEntity = new HttpEntity<>(sendRequest, headers);
+            HttpEntity<String> requestEntity = new HttpEntity<>(requestToSend, headers);
             String response = restTemplate.postForObject(SEND_URL, requestEntity, String.class);
 
             System.out.println("Sync response: " + response);
@@ -255,7 +255,7 @@ public class MainController {
      * @param serviceName название службы
      * @return true, если служба адаптера запущена, false, если не запущена
      */
-    public boolean checkIfServiceRunning(String serviceName) {
+    public static final boolean checkIfServiceRunning(String serviceName) {
         Process process;
         try {
             process = Runtime.getRuntime().exec("sc query " + serviceName);
@@ -276,7 +276,7 @@ public class MainController {
      * @param serviceName название службы
      * @return true, если служба адаптера смогла запуститься, false - в противном случае
      */
-    public boolean startService(String serviceName) {
+    public static final boolean startService(String serviceName) {
         try {
             Process process = Runtime.getRuntime().exec("sc start " + serviceName);
             int exitCode = process.waitFor();

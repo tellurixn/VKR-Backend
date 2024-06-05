@@ -12,6 +12,12 @@ import java.util.List;
 @Repository
 public interface ServiceMessageRepository extends CrudRepository<ServiceMessage, String> {
 
+    @Override
+    @Query(value = "SELECT s FROM ServiceMessage s ORDER BY s.created_at DESC")
+    List<ServiceMessage> findAll();
+    @Query(value = "SELECT s FROM ServiceMessage s WHERE s.id = :id")
+    ServiceMessage findByClientId(@Param("id") String id);
+
     @Query(value = "SELECT s FROM ServiceMessage s " +
             "WHERE s.vs_name = :vs_name")
     List<ServiceMessage> findAllByVsName(@Param("vs_name") String vs_name);

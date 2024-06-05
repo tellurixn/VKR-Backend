@@ -39,14 +39,19 @@ public class ServiceMessage {
     @Column(nullable = false, unique = false)
     String message_type;//тип взаимодействия
 
+    @Column(nullable = true, unique = false)
+    String original_content;
+
     public ServiceMessage(String id,
                           String content,
+                          String original_content,
                           String status,
                           LocalDateTime created_at,
                           String vs_name,
                           String message_type){
         this.id = id;
         this.content = content;
+        this.original_content = original_content;
         this.status = status;
         this.created_at = created_at;
         this.vs_name = vs_name;
