@@ -224,7 +224,7 @@ public class MainController {
             ServiceMessage newFATALINFRequest = new ServiceMessage(
                     clientId,
                     sendRequest,
-                    "NEW",
+                    "Новый",
                     LocalDateTime.now(),
                     FATALINF,
                     "Запрос"

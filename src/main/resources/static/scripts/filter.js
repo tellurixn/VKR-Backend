@@ -1,15 +1,24 @@
 $(document).ready(function() {
 
-    //поиск только по названию ВС
+    //поиск при изменении имени ВС
     $('.vs-name').click(function() {
-        let selectedValue = $(this).text().trim();
+        let selectedStatus = $('#mes_status').text().trim();
+        let selectedType = $('#mes_type').text().trim();
+        let selectedDate = $('#mes_date').text().trim();
+
+        let selectedName = $(this).text().trim();
         let currentValue = $('#vs_name');
-        currentValue.text(selectedValue);
+        currentValue.text(selectedName);
 
         $.ajax({
-            url: '/ajax/vs_name',
+            url: '/ajax/filter',
             type: 'GET',
-            data: { vs_name: selectedValue },
+            data: {
+                vs_name: selectedName,
+                status: selectedStatus,
+                message_type: selectedType,
+                date: selectedDate
+             },
             success: function(response) {
                 // Обработка ответа от сервера
                 console.log(response);
@@ -20,36 +29,54 @@ $(document).ready(function() {
         });
     });
 
-    //поиск только по статусу
+    //поиск при изменении статуса
     $('.mes-status').click(function() {
-        let selectedValue = $(this).text().trim();
+        let selectedName = $('#vs_name').text().trim();
+        let selectedType = $('#mes_type').text().trim();
+        let selectedDate = $('#mes_date').text().trim();
+
+        let selectedStatus = $(this).text().trim();
         let currentValue = $('#mes_status');
-        currentValue.text(selectedValue);
+        currentValue.text(selectedStatus);
 
         $.ajax({
-            url: '/ajax/status',
+            url: '/ajax/filter',
             type: 'GET',
-            data: { status: selectedValue },
-            success: function(response) {
-                // Обработка ответа от сервера
-                console.log(response);
+           data: {
+               vs_name: selectedName,
+               status: selectedStatus,
+               message_type: selectedType,
+               date: selectedDate
             },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log('Error: ' + textStatus);
-            }
+           success: function(response) {
+               // Обработка ответа от сервера
+               console.log(response);
+           },
+           error: function(jqXHR, textStatus, errorThrown) {
+               console.log('Error: ' + textStatus);
+           }
         });
     });
 
-    //поиск только по типу
+    //поиск при изменении типа
     $('.mes-type').click(function() {
-        let selectedValue = $(this).text().trim();
+        let selectedName = $('#vs_name').text().trim();
+        let selectedStatus = $('#mes_status').text().trim();
+        let selectedDate = $('#mes_date').text().trim();
+
+        let selectedType = $(this).text().trim();
         let currentValue = $('#mes_type');
-        currentValue.text(selectedValue);
+        currentValue.text(selectedType);
 
         $.ajax({
-            url: '/ajax/message_type',
+            url: '/ajax/filter',
             type: 'GET',
-            data: { message_type: selectedValue },
+            data: {
+                vs_name: selectedName,
+                status: selectedStatus,
+                message_type: selectedType,
+                date: selectedDate
+             },
             success: function(response) {
                 // Обработка ответа от сервера
                 console.log(response);
@@ -60,16 +87,25 @@ $(document).ready(function() {
         });
     });
 
-    //поиск только по дате
+    //поиск при изменеии даты
     $('.mes-date').click(function() {
-        let selectedValue = $(this).text().trim();
+        let selectedName = $('#vs_name').text().trim();
+        let selectedType = $('#mes_type').text().trim();
+        let selectedStatus = $('#mes_status').text().trim();
+
+        let selectedDate = $(this).text().trim();
         let currentValue = $('#mes_date');
-        currentValue.text(selectedValue);
+        currentValue.text(selectedDate);
 
         $.ajax({
-            url: '/ajax/time_range',
+            url: '/ajax/filter',
             type: 'GET',
-            data: { value: selectedValue },
+            data: {
+                vs_name: selectedName,
+                status: selectedStatus,
+                message_type: selectedType,
+                date: selectedDate
+             },
             success: function(response) {
                 // Обработка ответа от сервера
                 console.log(response);

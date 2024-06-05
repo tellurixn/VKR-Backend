@@ -54,7 +54,7 @@ public class GetResponseShedule {
             ServiceMessage message = new ServiceMessage(
                     UUID.randomUUID().toString(),
                     response,
-                    "NEW",
+                    "Получено",
                     LocalDateTime.now(),
                     FATALINF,
                     "Ответ"

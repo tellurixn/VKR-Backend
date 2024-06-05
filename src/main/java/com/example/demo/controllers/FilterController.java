@@ -18,52 +18,16 @@ public class FilterController {
     @Autowired
     ServiceMessageRepository serviceMessageRepository;
 
-    @GetMapping("/vs_name")
-    public @ResponseBody Iterable<ServiceMessage> getByVsName(
-            @RequestParam String vs_name){
-        switch (vs_name){
-            case "Все":
-                return serviceMessageRepository.findAll();
-            default:
-                return serviceMessageRepository.findAllByVsName(vs_name);
-        }
-    }
-    @GetMapping("/status")
-    public @ResponseBody Iterable<ServiceMessage> getByStatus(
-            @RequestParam String status){
-        switch (status){
-            case "Новый":
-                return  serviceMessageRepository.findAllByStatus("NEW");
-            case "Ошибка":
-                return  serviceMessageRepository.findAllByStatus("ERROR");
-            case "Получено":
-                return  serviceMessageRepository.findAllByStatus("RECEIVED");
-            case "Отправлено":
-                return  serviceMessageRepository.findAllByStatus("SENT");
-            default:
-                return serviceMessageRepository.findAll();
+    @GetMapping("/filter")
+    public @ResponseBody Iterable<ServiceMessage> filter(
+            @RequestParam String vs_name,
+            @RequestParam String status,
+            @RequestParam String message_type,
+            @RequestParam String date
+    ){
+        int numOfDays;//количество дней для отсчета начала периода
 
-        }
-
-    }
-    @GetMapping("/message_type")
-    public @ResponseBody Iterable<ServiceMessage> getByMessageType(
-            @RequestParam String message_type){
-        switch (message_type){
-            case "Все":
-                return serviceMessageRepository.findAll();
-            default:
-                return serviceMessageRepository.findAllByMessageType(message_type);
-        }
-
-    }
-    @GetMapping("/time_range")
-    public @ResponseBody Iterable<ServiceMessage> getByTimeRange(
-            @RequestParam String value){
-
-        int numOfDays;
-
-        switch (value){
+        switch (date){
             case "Сегодня":
                 numOfDays = 1;
                 break;
@@ -74,15 +38,180 @@ public class FilterController {
                 numOfDays = 30;
                 break;
             default:
-                return serviceMessageRepository.findAll();
+                numOfDays = 0;
+                break;
         }
 
-        return serviceMessageRepository.findMessagesByTimeRange(
-                LocalDateTime.now().minusDays(numOfDays),
-                LocalDateTime.now()
-        );
-    }
+        /*Фильтрация в зависимости от значения полей*/
+        if(
+            !vs_name.equals("Все") &&
+            !status.equals("Все") &&
+            !message_type.equals("Все") &&
+            !date.equals("За все время")
+        ){
+            return serviceMessageRepository.filterByAllParams(
+                    vs_name,
+                    status,
+                    message_type,
+                    LocalDateTime.now().minusDays(numOfDays),
+                    LocalDateTime.now()
+            );
+        } else if (
+            vs_name.equals("Все") &&
+            !status.equals("Все") &&
+            !message_type.equals("Все") &&
+            !date.equals("За все время")
+        ) {
+            return serviceMessageRepository.filterByStatusTypeAndDate(
+                    status,
+                    message_type,
+                    LocalDateTime.now().minusDays(numOfDays),
+                    LocalDateTime.now()
+            );
+        } else if (
+            !vs_name.equals("Все") &&
+            status.equals("Все") &&
+            !message_type.equals("Все") &&
+            !date.equals("За все время")
+        ) {
+            return serviceMessageRepository.filterByNameTypeAndDate(
+                    vs_name,
+                    message_type,
+                    LocalDateTime.now().minusDays(numOfDays),
+                    LocalDateTime.now()
+            );
+        } else if (
+            !vs_name.equals("Все") &&
+            !status.equals("Все") &&
+            message_type.equals("Все") &&
+            !date.equals("За все время")
+        ) {
+            return serviceMessageRepository.filterByNameStatusAndDate(
+                    vs_name,
+                    status,
+                    LocalDateTime.now().minusDays(numOfDays),
+                    LocalDateTime.now()
+            );
+        } else if (
+            !vs_name.equals("Все") &&
+            !status.equals("Все") &&
+            !message_type.equals("Все") &&
+            date.equals("За все время")
+        ) {
+            return serviceMessageRepository.filterByNameStatusType(
+                    vs_name,
+                    status,
+                    message_type
+            );
+        } else if (
+            vs_name.equals("Все") &&
+            status.equals("Все") &&
+            !message_type.equals("Все") &&
+            !date.equals("За все время")
+        ) {
+            return serviceMessageRepository.filterByTypeAndDate(
+                    message_type,
+                    LocalDateTime.now().minusDays(numOfDays),
+                    LocalDateTime.now()
+            );
+        } else if (
+            !vs_name.equals("Все") &&
+            !status.equals("Все") &&
+            message_type.equals("Все") &&
+            date.equals("За все время")
+            ) {
+                return serviceMessageRepository.filterByNameAndStatus(
+                        vs_name,
+                        status
+                );
+        } else if (
+            !vs_name.equals("Все") &&
+            status.equals("Все") &&
+            message_type.equals("Все") &&
+            !date.equals("За все время")
+        ) {
+            return serviceMessageRepository.filterByNameAndDate(
+                    vs_name,
+                    LocalDateTime.now().minusDays(numOfDays),
+                    LocalDateTime.now()
+            );
+        } else if (
+            !vs_name.equals("Все") &&
+            status.equals("Все") &&
+            !message_type.equals("Все") &&
+            date.equals("За все время")
+        ) {
+            return serviceMessageRepository.filterByNameAndType(
+                    vs_name,
+                    message_type
+            );
+        } else if (
+            vs_name.equals("Все") &&
+            !status.equals("Все") &&
+            message_type.equals("Все") &&
+            !date.equals("За все время")
+        ) {
+            return serviceMessageRepository.filterByStatusAndDate(
+                    status,
+                    LocalDateTime.now().minusDays(numOfDays),
+                    LocalDateTime.now()
+            );
+        } else if (
+            vs_name.equals("Все") &&
+            !status.equals("Все") &&
+            !message_type.equals("Все") &&
+            date.equals("За все время")
+        ) {
+            return serviceMessageRepository.filterByStatusAndType(
+                    status,
+                    message_type
+            );
+        } else if (
+            vs_name.equals("Все") &&
+            status.equals("Все") &&
+            message_type.equals("Все") &&
+            !date.equals("За все время")
+        ) {
+            return serviceMessageRepository.findMessagesByTimeRange(
+                    LocalDateTime.now().minusDays(numOfDays),
+                    LocalDateTime.now()
+            );
+        } else if (
+            !vs_name.equals("Все") &&
+            status.equals("Все") &&
+            message_type.equals("Все") &&
+            date.equals("За все время")
+        ) {
+            return serviceMessageRepository.findAllByVsName(vs_name);
+        } else if (
+            vs_name.equals("Все") &&
+            !status.equals("Все") &&
+            message_type.equals("Все") &&
+            date.equals("За все время")
+        ) {
+            return serviceMessageRepository.findAllByStatus(status);
+        } else if (
+            vs_name.equals("Все") &&
+            status.equals("Все") &&
+            !message_type.equals("Все") &&
+            date.equals("За все время")
+        ) {
+            return serviceMessageRepository.findAllByMessageType(message_type);
+        } else if (
+            vs_name.equals("Все") &&
+            status.equals("Все") &&
+            message_type.equals("Все") &&
+            !date.equals("За все время")
+        ) {
+            return serviceMessageRepository.findMessagesByTimeRange(
+                    LocalDateTime.now().minusDays(numOfDays),
+                    LocalDateTime.now()
+            );
+        }
 
+
+        return serviceMessageRepository.findAll();
+    }
 
 
 
