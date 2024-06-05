@@ -134,8 +134,8 @@
                                                     </button>
                                                     <ul class="dropdown-menu">
                                                         <li><button class="dropdown-item mes-date" type="button">За все время</button></li>
-                                                        <li><button class="dropdown-item mes-date" type="button">Сегодня</button></li>
-                                                        <li><button class="dropdown-item mes-date" type="button">Посдение 7 дней</button></li>
+                                                        <!--<li><button class="dropdown-item mes-date" type="button">Сегодня</button></li>-->
+                                                        <li><button class="dropdown-item mes-date" type="button">Последние 7 дней</button></li>
                                                         <li><button class="dropdown-item mes-date" type="button">Последние 30 дней</button></li>
                                                         <!--<li><button class="dropdown-item" type="button">Указать период</button></li>-->
                                                     </ul>
@@ -159,17 +159,17 @@
                                     <th scope="col">Статус</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="table_body">
                             <tr th:if="${messages.empty}">
                                 <td colspan="4"> Нет записей в истории взаимодействий </td>
                             </tr>
-                            <tr th:each="message : ${messages}">
-                                <a href="#">
-                                    <td scope="row" th:text="${message.getFormattedDate()}"></td>
-                                    <td th:text="${message.vs_name}"></td>
-                                    <td th:text="${message.message_type}"></td>
-                                    <td th:text="${message.status}"></td>
-                                </a>
+
+                            <tr th:each="message : ${messages}" th:onclick="'window.location.href = \'' + @{/message/{id}(id=${message.id})} + '\''"
+                                style="cursor: pointer;">
+                                <td scope="row" th:text="${message.getFormattedDate()}"></td>
+                                <td th:text="${message.vs_name}"></td>
+                                <td th:text="${message.message_type}"></td>
+                                <td th:text="${message.status}"></td>
                             </tr>
 
                             </tbody>

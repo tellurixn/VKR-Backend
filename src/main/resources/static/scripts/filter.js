@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    let $tableBody = $('#table_body');
+
     //поиск при изменении имени ВС
     $('.vs-name').click(function() {
         let selectedStatus = $('#mes_status').text().trim();
@@ -20,8 +22,30 @@ $(document).ready(function() {
                 date: selectedDate
              },
             success: function(response) {
-                // Обработка ответа от сервера
                 console.log(response);
+
+                $tableBody.empty();
+                if(response != []) {
+                    $.each(response, (i, message) => {
+                        let tableView =`
+                                <tr onclick="window.location.href = '/message/${message.id}'"
+                                                                    style="cursor: pointer;">
+                                    <td scope="row">${message.formattedDate}</td>
+                                    <td>${message.vs_name}</td>
+                                    <td>${message.message_type}</td>
+                                    <td>${message.status}</td>
+                                </tr>
+                        `;
+                        $tableBody.append(tableView);
+                    });
+                } else {
+                    let tableView =`
+                        <tr>
+                            <td colspan="4"> Нет записей в истории взаимодействий</td>
+                        </tr>
+                    `;
+                    $tableBody.append(tableView);
+                }
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log('Error: ' + textStatus);
@@ -49,9 +73,31 @@ $(document).ready(function() {
                date: selectedDate
             },
            success: function(response) {
-               // Обработка ответа от сервера
-               console.log(response);
-           },
+           console.log(response);
+
+           $tableBody.empty();
+           if(response != []) {
+               $.each(response, (i, message) => {
+                   let tableView =`
+                           <tr onclick="window.location.href = '/message/${message.id}'"
+                                                               style="cursor: pointer;">
+                               <td scope="row">${message.formattedDate}</td>
+                               <td>${message.vs_name}</td>
+                               <td>${message.message_type}</td>
+                               <td>${message.status}</td>
+                           </tr>
+                   `
+                   $tableBody.append(tableView);
+               });
+           } else {
+               let tableView =`
+                   <tr>
+                       <td colspan="4"> Нет записей в истории взаимодействий</td>
+                   </tr>
+               `
+               $tableBody.append(tableView);
+           }
+       },
            error: function(jqXHR, textStatus, errorThrown) {
                console.log('Error: ' + textStatus);
            }
@@ -78,9 +124,31 @@ $(document).ready(function() {
                 date: selectedDate
              },
             success: function(response) {
-                // Обработка ответа от сервера
-                console.log(response);
-            },
+            console.log(response);
+
+            $tableBody.empty();
+            if(response != []) {
+                $.each(response, (i, message) => {
+                    let tableView =`
+                            <tr onclick="window.location.href = '/message/${message.id}'"
+                                                                style="cursor: pointer;">
+                                <td scope="row">${message.formattedDate}</td>
+                                <td>${message.vs_name}</td>
+                                <td>${message.message_type}</td>
+                                <td>${message.status}</td>
+                            </tr>
+                    `;
+                    $tableBody.append(tableView);
+                });
+            } else {
+                let tableView =`
+                    <tr>
+                        <td colspan="4"> Нет записей в истории взаимодействий</td>
+                    </tr>
+                `;
+                $tableBody.append(tableView);
+            }
+        },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log('Error: ' + textStatus);
             }
@@ -107,8 +175,30 @@ $(document).ready(function() {
                 date: selectedDate
              },
             success: function(response) {
-                // Обработка ответа от сервера
                 console.log(response);
+
+                $tableBody.empty();
+                if(response != []) {
+                    $.each(response, (i, message) => {
+                        let tableView =`
+                                <tr onclick="window.location.href = '/message/${message.id}'"
+                                                                    style="cursor: pointer;">
+                                    <td scope="row">${message.formattedDate}</td>
+                                    <td>${message.vs_name}</td>
+                                    <td>${message.message_type}</td>
+                                    <td>${message.status}</td>
+                                </tr>
+                        `;
+                        $tableBody.append(tableView);
+                    });
+                } else {
+                    let tableView =`
+                        <tr>
+                            <td colspan="4"> Нет записей в истории взаимодействий</td>
+                        </tr>
+                    `;
+                    $tableBody.append(tableView);
+                }
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log('Error: ' + textStatus);
