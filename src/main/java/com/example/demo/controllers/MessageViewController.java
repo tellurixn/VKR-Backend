@@ -15,6 +15,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
 
+import static com.example.demo.controllers.MainController.*;
+
 @Controller
 @RequestMapping("/message")
 public class MessageViewController {
@@ -24,22 +26,35 @@ public class MessageViewController {
 
     @GetMapping("/{id}")
     public String requestView(@PathVariable String id, Model model){
+        boolean isAdapterRunning = checkIfServiceRunning(SERVICE_NAME);
+        boolean isAdapterStarted = true;
+        if(!isAdapterRunning) {
+            isAdapterStarted = startService(SERVICE_NAME);
+            isAdapterRunning = checkIfServiceRunning(SERVICE_NAME);
+        }
+        model.addAttribute("isAdapterRunning", isAdapterRunning);
+
         ServiceMessage request = serviceMessageRepository.findByClientId(id);
         String body = request.getOriginal_content();
 
+
         if (request.getMessage_type().equals("Запрос")) {
+        /*-------------------------------------Запрос--------------------------------------------------*/
             try {
                 StringReader reader = new StringReader(body);
                 JAXBContext context = JAXBContext.newInstance(FATALINFRequest.class);
                 Unmarshaller unmarshaller = context.createUnmarshaller();
                 FATALINFRequest requestObject = (FATALINFRequest) unmarshaller.unmarshal(reader);
-                //requestObject.getСведЗапрос().getFirst().getСведФЛ().getУдЛичнФЛ()
+                model.addAttribute("request", request);
                 model.addAttribute("message", requestObject);
                 return "message_view";
             } catch (javax.xml.bind.JAXBException e) {
                 e.printStackTrace();
             }
-        } else {
+        }
+
+        /*-------------------------------------Ответ--------------------------------------------------*/
+        else {
             try {
                 StringReader reader = new StringReader(body);
                 JAXBContext context = JAXBContext.newInstance(FATALINFResponse.class);
