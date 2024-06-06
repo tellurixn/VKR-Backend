@@ -45,9 +45,12 @@ public class MessageViewController {
                 JAXBContext context = JAXBContext.newInstance(FATALINFRequest.class);
                 Unmarshaller unmarshaller = context.createUnmarshaller();
                 FATALINFRequest requestObject = (FATALINFRequest) unmarshaller.unmarshal(reader);
+
+
                 model.addAttribute("request", request);
                 model.addAttribute("message", requestObject);
-                return "message_view";
+
+                return "request_view";
             } catch (javax.xml.bind.JAXBException e) {
                 e.printStackTrace();
             }
@@ -60,11 +63,16 @@ public class MessageViewController {
                 JAXBContext context = JAXBContext.newInstance(FATALINFResponse.class);
                 Unmarshaller unmarshaller = context.createUnmarshaller();
                 FATALINFResponse responseObject = (FATALINFResponse) unmarshaller.unmarshal(reader);
+
+                model.addAttribute("request", request);
+                model.addAttribute("message", responseObject);
+
+                return "response_view";
             } catch (javax.xml.bind.JAXBException e) {
                 e.printStackTrace();
             }
         }
 
-        return "message_view";
+        return "";
     }
 }

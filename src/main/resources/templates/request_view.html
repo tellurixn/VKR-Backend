@@ -55,7 +55,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="content">
-                    <h4>Сообщение от <span th:text="${request.getFormattedDate()}"></span></h4>
+                    <h4>Запрос от <span th:text="${request.getFormattedDate()}"></span></h4>
 
                     <h4>
                         Вид сведений: <span th:text="${request.vs_name}"></span>
@@ -215,7 +215,7 @@
                                             Серия
                                         </label>
                                         <div class="col-8">
-                                            <input type="number" class="form-control" id="docSeries" name="docSeries"
+                                            <input type="text" class="form-control" id="docSeries" name="docSeries"
                                                    th:value="${message.getСведЗапрос().getFirst().getСведФЛ().getУдЛичнФЛ().getСерДок()} ?: '' "
                                                    disabled><br>
                                         </div>
