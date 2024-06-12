@@ -1,10 +1,10 @@
 package com.example.demo.models.db;
 
-
-import jakarta.persistence.*;
 import lombok.*;
 
 
+
+import javax.persistence.*;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

@@ -25,7 +25,7 @@ public class MessageViewController {
     ServiceMessageRepository serviceMessageRepository;
 
     @GetMapping("/{id}")
-    public String requestView(@PathVariable String id, Model model){
+    public String messageView(@PathVariable String id, Model model){
         boolean isAdapterRunning = checkIfServiceRunning(SERVICE_NAME);
         boolean isAdapterStarted = true;
         if(!isAdapterRunning) {
