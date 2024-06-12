@@ -54,12 +54,11 @@ public class MainController {
     ServiceMessageRepository serviceRequestRepository;
 
 
-
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model) {
         boolean isAdapterRunning = checkIfServiceRunning(SERVICE_NAME);
         boolean isAdapterStarted = true;
-        if(!isAdapterRunning)
+        if (!isAdapterRunning)
             isAdapterStarted = startService(SERVICE_NAME);
 
         model.addAttribute("isAdapterRunning", isAdapterRunning);
@@ -67,10 +66,10 @@ public class MainController {
     }
 
     @GetMapping("/history")
-    public String history(Model model){
+    public String history(Model model) {
         boolean isAdapterRunning = checkIfServiceRunning(SERVICE_NAME);
         boolean isAdapterStarted = true;
-        if(!isAdapterRunning)
+        if (!isAdapterRunning)
             isAdapterStarted = startService(SERVICE_NAME);
 
         Iterable<ServiceMessage> messages = serviceRequestRepository.findAll();
@@ -81,10 +80,10 @@ public class MainController {
     }
 
     @GetMapping("/egr_zags")
-    public String egr_zags(Model model){
+    public String egr_zags(Model model) {
         boolean isAdapterRunning = checkIfServiceRunning(SERVICE_NAME);
         boolean isAdapterStarted = true;
-        if(!isAdapterRunning)
+        if (!isAdapterRunning)
             isAdapterStarted = startService(SERVICE_NAME);
 
         model.addAttribute("isAdapterRunning", isAdapterRunning);
@@ -92,7 +91,7 @@ public class MainController {
     }
 
     @PostMapping("/egr_zags")
-    public RedirectView sendEgrZagsRequest(@RequestParam Map<String,String> requestParams)
+    public RedirectView sendEgrZagsRequest(@RequestParam Map<String, String> requestParams)
             throws DatatypeConfigurationException {
 
         FATALINFRequest request = new FATALINFRequest();
@@ -105,11 +104,10 @@ public class MainController {
         /*Сведения о нормативно-правовых основаниях запрашивающей стороны для получения сведений
         из ЕГР ЗАГС об актах гражданского состояния о смерти*/
         FATALINFRequest.СведОсн svedOsn = new FATALINFRequest.СведОсн();
-        if(requestParams.get("ogrRaspDoc") != null) {
+        if (requestParams.get("ogrRaspDoc") != null) {
             svedOsn.setПрСведДокОсн("1");
             svedOsn.setСведДокОсн(requestParams.get("orgRaspDoc"));
-        }
-        else{
+        } else {
             svedOsn.setПрСведДокОсн("0");
         }
         svedOsn.setКодНормОсн(requestParams.get("codeOsn"));
@@ -118,9 +116,9 @@ public class MainController {
         FATALINFRequest.СведЗапрос svedZapros = new FATALINFRequest.СведЗапрос();
         //svedZapros.setИдДок(requestParams.get("documentId"));
         svedZapros.setИдДок(UUID.randomUUID().toString());
-        if(requestParams.get("subjectName") == null)
+        if (requestParams.get("subjectName") == null)
             svedZapros.setПрРегионРегАГС("0");
-        else{
+        else {
             svedZapros.setПрРегионРегАГС("1");
             svedZapros.setРегионРегАГС(requestParams.get("subjectName"));
         }
@@ -163,10 +161,9 @@ public class MainController {
         }
         svedFL.setФИО(fio);
 
-        if(requestParams.get("birthday").isEmpty()) {
+        if (requestParams.get("birthday").isEmpty()) {
             svedFL.setПрДатаРожд("0");
-        }
-        else{
+        } else {
             svedFL.setПрДатаРожд("1");
             LocalDate localBirthday = LocalDate.parse(requestParams.get("birthday"));
             XMLGregorianCalendar xmlBirthday = DatatypeFactory.newInstance().newXMLGregorianCalendar(localBirthday.toString());
@@ -175,7 +172,7 @@ public class MainController {
 
 
         /*Документ, удостоверяющий личность*/
-        if(!requestParams.get("docCode").isEmpty()) {
+        if (!requestParams.get("docCode").isEmpty()) {
             УдЛичнФЛСНТип udLich = new УдЛичнФЛСНТип();
             udLich.setКодВидДок(requestParams.get("docCode"));
             udLich.setСерДок(requestParams.get("docSeries"));
@@ -212,15 +209,17 @@ public class MainController {
                     "WebService",
                     new RequestMessage(
                             "RequestMessageType",
-                            new RequestMetadata(clientId, true),
+                            new RequestMetadata(clientId, false),
                             new RequestContent(
                                     new Content(
-                                            new MessagePrimaryContent(originalXmlContent.toString().replaceAll("\n"," "))
+                                            new MessagePrimaryContent(originalXmlContent.toString()
+                                                    .replaceAll("\n", "")
+                                                    .replaceAll("\t", "")
+                                            )
                                     )
                             )
                     )
             ).toJson();
-
 
 
             //Сохранение запроса в БД
@@ -245,17 +244,115 @@ public class MainController {
 
             System.out.println("Sync response: " + response);
 
-        }
-        catch (javax.xml.bind.JAXBException e){
+        } catch (javax.xml.bind.JAXBException e) {
             e.printStackTrace();
         }
 
-        return new RedirectView("/");
+        return new RedirectView("/history");
+    }
+
+    @GetMapping("/egr_zags_etalon")
+    public RedirectView sendEgrZagsEtalonRequest() {
+
+        /* Эталонный запрос
+         *
+         *       <?xml version="1.0" encoding="UTF-8"?>
+         *         <ns1:FATALINFRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fns="urn://x-artefacts-zags-fatalinf/types/4.0.1" xmlns:ns1="urn://x-artefacts-zags-fatalinf/root/112-52/4.0.1" ИдЗапрос="0bde2079-eded-11ea-952d-00155d01aa22" КолДок="1" ТипАГС="07" xsi:schemaLocation="urn://x-artefacts-zags-fatalinf/root/112-52/4.0.1 zags-fatalinf-ru-root.xsd">
+         *             <ns1:СведОсн КодНормОсн="01">
+         *                   <ns1:ПрСведДокОсн>1</ns1:ПрСведДокОсн>
+         *             </ns1:СведОсн>
+         *             <ns1:СведЗапрос ИдДок="0bde2079-eded-11ea-952d-00155d01aa21">
+         *                 <ns1:СведАГС НомерЗапис="1234">
+         *                     <ns1:ДатаЗапис>2020-05-01</ns1:ДатаЗапис>
+         *                     <ns1:ОрганЗАГС НаимЗАГС="Отдел Государственной службы записи актов гражданского состояния Республики Ингушетия Джейрахского района" КодЗАГС="R0600004"/>
+         *                 </ns1:СведАГС>
+         *                 <ns1:СведФЛ >
+         *                     <ns1:ФИО>
+         *                         <fns:Фамилия>Иванова</fns:Фамилия>
+         *                         <fns:Имя>Мария</fns:Имя>
+         *                         <fns:Отчество>Петровна</fns:Отчество>
+         *                     </ns1:ФИО>
+         *                     <ns1:ПрДатаРожд>1</ns1:ПрДатаРожд>
+         *                 </ns1:СведФЛ>
+         *                 <ns1:ПрРегионРегАГС>1</ns1:ПрРегионРегАГС>
+         *             </ns1:СведЗапрос>
+         *         </ns1:FATALINFRequest>}
+         *
+         */
+        String etalon = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                "<!--Sample XML file generated by XMLSpy v2017 rel. 3 sp1 (x64) (http://www.altova.com)-->\n" +
+                "<ns1:FATALINFRequest xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:fns=\"urn://x-artefacts-zags-fatalinf/types/4.0.1\" xmlns:ns1=\"urn://x-artefacts-zags-fatalinf/root/112-52/4.0.1\" ИдЗапрос=\"0bde2079-eded-11ea-952d-00155d01aa22\" КолДок=\"1\" ТипАГС=\"07\" xsi:schemaLocation=\"urn://x-artefacts-zags-fatalinf/root/112-52/4.0.1 zags-fatalinf-ru-root.xsd\">\n" +
+                "\t<ns1:СведОсн КодНормОсн=\"01\">\n" +
+                "\t\t<ns1:ПрСведДокОсн>1</ns1:ПрСведДокОсн>\n" +
+                "\t</ns1:СведОсн>\n" +
+                "\t<ns1:СведЗапрос ИдДок=\"0bde2079-eded-11ea-952d-00155d01aa21\">\n" +
+                "\t\t<ns1:СведАГС НомерЗапис=\"1234\">\n" +
+                "\t\t\t<ns1:ДатаЗапис>2020-05-01</ns1:ДатаЗапис>\n" +
+                "\t\t\t<ns1:ОрганЗАГС НаимЗАГС=\"Отдел Государственной службы записи актов гражданского состояния Республики Ингушетия Джейрахского района\" КодЗАГС=\"R0600004\"/>\n" +
+                "\t\t</ns1:СведАГС>\n" +
+                "\t\t<ns1:СведФЛ >\n" +
+                "\t\t\t<ns1:ФИО>\n" +
+                "\t\t\t\t<fns:Фамилия>Иванова</fns:Фамилия>\n" +
+                "\t\t\t\t<fns:Имя>Мария</fns:Имя>\n" +
+                "\t\t\t\t<fns:Отчество>Петровна</fns:Отчество>\n" +
+                "\t\t\t</ns1:ФИО>\n" +
+                "\t\t\t<ns1:ПрДатаРожд>1</ns1:ПрДатаРожд>\n" +
+                "\t\t</ns1:СведФЛ>\n" +
+                "\t\t<ns1:ПрРегионРегАГС>1</ns1:ПрРегионРегАГС>\n" +
+                "\t</ns1:СведЗапрос>\n" +
+                "</ns1:FATALINFRequest>\n";
+
+
+        String clientId = UUID.randomUUID().toString();
+
+
+        //Формирование конверта сообщения
+        String requestToSend = new JsonSendRequest(
+                "WebService",
+                new RequestMessage(
+                        "RequestMessageType",
+                        new RequestMetadata(clientId, true),
+                        new RequestContent(
+                                new Content(
+                                        new MessagePrimaryContent(etalon
+                                                .replaceAll("\n", "")
+                                                .replaceAll("\t",""))
+                                )
+                        )
+                )
+        ).toJson();
+
+
+        //Сохранение запроса в БД
+        ServiceMessage newFATALINFRequest = new ServiceMessage(
+                clientId,
+                requestToSend,
+                etalon,
+                "Новый",
+                LocalDateTime.now(),
+                "Эталонный запрос | " + FATALINF,
+                "Запрос"
+        );
+        serviceRequestRepository.save(newFATALINFRequest);
+
+        //Отправка сообщения в ИУА
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        RestTemplate restTemplate = new RestTemplate();
+        HttpEntity<String> requestEntity = new HttpEntity<>(requestToSend, headers);
+        String response = restTemplate.postForObject(SEND_URL, requestEntity, String.class);
+
+        System.out.println("Sync response: " + response);
+
+
+        return new RedirectView("/history");
     }
 
 
     /**
      * Функция для проверки состояния службы ИУА СМЭВ3
+     *
      * @param serviceName название службы
      * @return true, если служба адаптера запущена, false, если не запущена
      */
@@ -264,8 +361,8 @@ public class MainController {
         try {
             process = Runtime.getRuntime().exec("sc query " + serviceName);
             Scanner reader = new Scanner(process.getInputStream(), "UTF-8");
-            while(reader.hasNextLine()) {
-                if(reader.nextLine().contains("RUNNING")) {
+            while (reader.hasNextLine()) {
+                if (reader.nextLine().contains("RUNNING")) {
                     return true;
                 }
             }
@@ -277,6 +374,7 @@ public class MainController {
 
     /**
      * Функция для запуска службы ИУА СМЭВ3
+     *
      * @param serviceName название службы
      * @return true, если служба адаптера смогла запуститься, false - в противном случае
      */

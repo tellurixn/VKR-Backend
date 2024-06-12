@@ -1,9 +1,12 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.db.ServiceMessage;
+import com.example.demo.models.dto.EgrZagsRequestDto;
+import com.example.demo.models.dto.EgrZagsResponseDto;
 import com.example.demo.models.xmls.root.FATALINFRequest;
 import com.example.demo.models.xmls.root.FATALINFResponse;
 import com.example.demo.repositories.ServiceMessageRepository;
+import com.example.demo.service.MappingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,9 +49,12 @@ public class MessageViewController {
                 Unmarshaller unmarshaller = context.createUnmarshaller();
                 FATALINFRequest requestObject = (FATALINFRequest) unmarshaller.unmarshal(reader);
 
+                MappingUtils mappingUtils = new MappingUtils();
+                EgrZagsRequestDto requestDto = mappingUtils.mapToMessageDto(requestObject);
+
 
                 model.addAttribute("request", request);
-                model.addAttribute("message", requestObject);
+                model.addAttribute("message", requestDto);
 
                 return "request_view";
             } catch (javax.xml.bind.JAXBException e) {
@@ -64,8 +70,11 @@ public class MessageViewController {
                 Unmarshaller unmarshaller = context.createUnmarshaller();
                 FATALINFResponse responseObject = (FATALINFResponse) unmarshaller.unmarshal(reader);
 
+                MappingUtils mappingUtils = new MappingUtils();
+                EgrZagsResponseDto responseDto = mappingUtils.mapToMessageDto(responseObject);
+
                 model.addAttribute("request", request);
-                model.addAttribute("message", responseObject);
+                model.addAttribute("message", responseDto);
 
                 return "response_view";
             } catch (javax.xml.bind.JAXBException e) {

@@ -73,7 +73,7 @@
                                         </label>
                                         <div class="col-8">
                                             <input type="text" class="form-control" id="docCreatedDate" name="docCreatedDate"
-                                                   th:value="${message.getСведОтветАГС().getFirst().getСведРегСмерт().getДатаЗаписДок().getГод()} ?: '' "
+                                                   th:value="${message.getDocCreatedDate()}"
                                                    disabled><br>
                                         </div>
                                     </div>
@@ -84,7 +84,7 @@
                                         </label>
                                         <div class="col-8">
                                             <textarea  class="form-control" id="ZAGS" name="ZAGS" rows="3"
-                                                       th:text="${message.getСведОтветАГС().getFirst().getСведРегСмерт().getОрганЗАГС().getНаимЗАГС()} ?: '' "
+                                                       th:text="${message.getZAGS()}"
                                                        disabled></textarea>
                                         </div>
                                         <br>
@@ -96,7 +96,7 @@
                                         </label>
                                         <div class="col-8">
                                             <input type="text" class="form-control" id="ZAGSCode" name="ZAGSCode"
-                                                   th:value="${message.getСведОтветАГС().getFirst().getСведРегСмерт().getОрганЗАГС().getКодЗАГС()} ?: '' "
+                                                   th:value="${message.getCodeZAGS()}"
                                                    disabled><br>
                                         </div>
                                     </div>
@@ -110,7 +110,7 @@
                                         </label>
                                         <div class="col-8">
                                             <input type="text" class="form-control" id="docSeries" name="docSeries"
-                                                   th:value="${message.getСведОтветАГС().getFirst().getСведРегСмерт().getСвидетСмерт().getFirst().getСерияСвидет()} ?: '' "
+                                                   th:value="${message.getDocSeries()}"
                                                    disabled><br>
                                         </div>
                                     </div>
@@ -119,8 +119,8 @@
                                             Номер
                                         </label>
                                         <div class="col-8">
-                                            <input type="number" class="form-control" id="docNumber" name="docNumber"
-                                                   th:value="${message.getСведОтветАГС().getFirst().getСведРегСмерт().getСвидетСмерт().getFirst().getНомерСвидет()} ?: '' "
+                                            <input type="text" class="form-control" id="docNumber" name="docNumber"
+                                                   th:value="${message.getDocNumber()}"
                                                    disabled><br>
                                         </div>
                                     </div>
@@ -129,8 +129,8 @@
                                             Дата выдачи
                                         </label>
                                         <div class="col-8">
-                                            <input type="date" class="form-control" id="docDate" name="docDate"
-                                                   th:value="${message.getСведОтветАГС().getFirst().getСведРегСмерт().getСвидетСмерт().getFirst().getДатаВыдСвидет()} ?: '' "
+                                            <input type="text" class="form-control" id="docDate" name="docDate"
+                                                   th:value="${message.getDocDate()}"
                                                    disabled><br>
                                         </div>
                                     </div>
@@ -144,7 +144,7 @@
                                         </label>
                                         <div class="col-8">
                                             <input type="text" class="form-control" id="LastName" name="LastName"d
-                                                   th:value="${message.getСведОтветАГС().getFirst().getСведРегСмерт().getПрдСведРег().getФИОУмер().getФамилия()} ?: '' "
+                                                   th:value="${message.getLastName()}"
                                                    disabled><br>
                                         </div>
                                     </div>
@@ -154,7 +154,7 @@
                                         </label>
                                         <div class="col-8">
                                             <input type="text" class="form-control" id="FirstName" name="FirstName"
-                                                   th:value="${message.getСведОтветАГС().getFirst().getСведРегСмерт().getПрдСведРег().getФИОУмер().getИмя()} ?: '' "
+                                                   th:value="${message.getFirstName()}"
                                                    disabled><br>
                                         </div>
                                     </div>
@@ -164,7 +164,7 @@
                                         </label>
                                         <div class="col-8">
                                             <input type="text" class="form-control" id="Patronymic" name="Patronymic"
-                                                   th:value="${message.getСведОтветАГС().getFirst().getСведРегСмерт().getПрдСведРег().getФИОУмер().getОтчество()} ?: '' "
+                                                   th:value="${message.getPatronymic()}"
                                                    disabled><br>
                                         </div>
                                     </div>
@@ -173,8 +173,8 @@
                                             Дата рождения
                                         </label>
                                         <div class="col-8">
-                                            <input type="date" class="form-control" id="birthday" name="birthday"
-                                                   th:value="${message.getСведОтветАГС().getFirst().getСведРегСмерт().getПрдСведРег().getДатаРождКаленд()} ?: '' "
+                                            <input type="text" class="form-control" id="birthday" name="birthday"
+                                                   th:value="${message.getBirthday()}"
                                                    disabled><br>
                                         </div>
                                     </div>
@@ -183,8 +183,8 @@
                                             Дата смерти
                                         </label>
                                         <div class="col-8">
-                                            <input type="date" class="form-control" id="deathday" name="deathday"
-                                                   th:value="${message.getСведОтветАГС().getFirst().getСведРегСмерт().getПрдСведРег().getДатаСмертКаленд()} ?: '' "
+                                            <input type="text" class="form-control" id="deathday" name="deathday"
+                                                   th:value="${message.getDeathday()}"
                                                    disabled><br>
                                         </div>
                                     </div>
@@ -193,8 +193,8 @@
                                             Время смерти
                                         </label>
                                         <div class="col-8">
-                                            <input type="time" class="form-control" id="deathtime" name="deathtime"
-                                                   th:value="${message.getСведОтветАГС().getFirst().getСведРегСмерт().getПрдСведРег().getВремяСмерт()} ?: '' "
+                                            <input type="text" class="form-control" id="deathtime" name="deathtime"
+                                                   th:value="${message.getDeathtime()}"
                                                    disabled><br>
                                         </div>
                                     </div>
@@ -204,7 +204,7 @@
                                         </label>
                                         <div class="col-8">
                                             <input type="text" class="form-control" id="gender" name="gender"
-                                                   th:value="${message.getСведОтветАГС().getFirst().getСведРегСмерт().getПрдСведРег().getПол()} ?: '' "
+                                                   th:value="${message.getGender()}"
                                                    disabled><br>
                                         </div>
                                     </div>
@@ -214,7 +214,7 @@
                                         </label>
                                         <div class="col-8">
                                             <input type="text" class="form-control" id="citizenship" name="citizenship"
-                                                   th:value="${message.getСведОтветАГС().getFirst().getСведРегСмерт().getПрдСведРег().getГраждТекст()} ?: '' "
+                                                   th:value="${message.getCitizenship()}"
                                                    disabled><br>
                                         </div>
                                     </div>
@@ -224,7 +224,7 @@
                                         </label>
                                         <div class="col-8">
                                             <textarea  class="form-control" id="birthPlace" name="birthPlace" rows="3"
-                                                       th:text="${message.getСведОтветАГС().getFirst().getСведРегСмерт().getПрдСведРег().getМестоРожден().getМестоТекст()} ?: '' "
+                                                       th:text="${message.getBirthPlace()}"
                                                        disabled></textarea>
                                         </div>
                                         <br>
@@ -235,7 +235,7 @@
                                         </label>
                                         <div class="col-8">
                                             <textarea  class="form-control" id="location" name="location" rows="3"
-                                                       th:text="${message.getСведОтветАГС().getFirst().getСведРегСмерт().getПрдСведРег().getМЖПосл().getАдрМЖРФ().getАдрРФФИАС().getАдрТекст()} ?: '' "
+                                                       th:text="${message.getLocation()}"
                                                        disabled></textarea>
                                         </div>
                                         <br>
@@ -246,7 +246,7 @@
                                         </label>
                                         <div class="col-8">
                                             <textarea  class="form-control" id="deathPlace" name="deathPlace" rows="3"
-                                                       th:text="${message.getСведОтветАГС().getFirst().getСведРегСмерт().getПрдСведРег().getМестоСмерт().getМестоТекст()} ?: '' "
+                                                       th:text="${message.getDeathPlace()}"
                                                        disabled></textarea>
                                         </div>
                                         <br>

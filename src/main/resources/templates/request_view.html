@@ -74,7 +74,7 @@
                                         ЕГР ЗАГС по справочнику СНПОСН
                                     </label>
                                     <div class="col-8">
-                                        <input th:value="${message.getСведОсн().getКодНормОсн()} ?: '' " type="number" class="form-control" id="codeOsn" name="codeOsn" disabled><br>
+                                        <input th:value="${message.getCodeOsn()}" type="text" class="form-control" id="codeOsn" name="codeOsn" disabled><br>
                                     </div>
                                 </div>
                                 <br>
@@ -85,7 +85,7 @@
                                     </label>
                                     <div class="col-8">
                                         <textarea type="text" class="form-control" id="orgRaspDoc" name="orgRaspDoc"
-                                                  th:text="${message.getСведОсн().getСведДокОсн()} ?: 'Отсутсвуют' " disabled></textarea>
+                                                  th:text="${message.getOrgRaspDoc()}" disabled></textarea>
                                     </div>
                                     <br>
                                 </div>
@@ -104,8 +104,8 @@
                                         Номер актовой записи гражданского состояния
                                     </label>
                                     <div class="col-8">
-                                        <input type="number" class="form-control" id="actNumber" name="actNumber"
-                                               th:value="${message.getСведЗапрос().getFirst().getСведАГС().getНомерЗапис()} ?: 'Отсутсвуют' " disabled><br>
+                                        <input type="text" class="form-control" id="actNumber" name="actNumber"
+                                               th:value="${message.getActNumber()}" disabled><br>
                                     </div>
                                 </div>
                                 <div class="form-group col-12">
@@ -113,8 +113,8 @@
                                         Дата составления актовой записи гражданского состояния
                                     </label>
                                     <div class="col-8">
-                                        <input type="date" class="form-control" id="docCreatedDate" name="docCreatedDate"
-                                               th:value="${message.getСведЗапрос().getFirst().getСведАГС().getДатаЗапис()} ?: 'Отсутсвуют' " disabled><br>
+                                        <input type="text" class="form-control" id="docCreatedDate" name="docCreatedDate"
+                                               th:value="${message.getDocCreatedDate}" disabled><br>
                                     </div>
                                 </div>
                                 <div class="form-group col-12">
@@ -124,7 +124,7 @@
                                     </label>
                                     <div class="col-8">
                                         <textarea  class="form-control" id="ZAGS" name="ZAGS" rows="3"
-                                                   th:text="${message.getСведЗапрос().getFirst().getСведАГС().getОрганЗАГС().getНаимЗАГС()} ?: 'Отсутсвуют' "
+                                                   th:text="${message.getZAGS()}"
                                                    disabled></textarea>
                                     </div>
                                     <br>
@@ -136,7 +136,7 @@
                                     </label>
                                     <div class="col-8">
                                         <input type="text" class="form-control" id="ZAGSCode" name="ZAGSCode"
-                                               th:value="${message.getСведЗапрос().getFirst().getСведАГС().getОрганЗАГС().getКодЗАГС()} ?: 'Отсутсвует' "
+                                               th:value="${message.getCodeZAGS()}"
                                                 disabled><br>
                                     </div>
                                 </div>
@@ -150,7 +150,7 @@
                                     </label>
                                     <div class="col-8">
                                         <input type="text" class="form-control" id="SNILS" name="SNILS"
-                                               th:value="${message.getСведЗапрос().getFirst().getСведФЛ().getСНИЛС()} ?: 'Отсутсвует' "
+                                               th:value="${message.getSNILS()}"
                                                 disabled><br>
                                     </div>
                                 </div>
@@ -160,7 +160,7 @@
                                     </label>
                                     <div class="col-8">
                                         <input type="text" class="form-control" id="LastName" name="LastName"
-                                               th:value="${message.getСведЗапрос().getFirst().getСведФЛ().getФИО().getФамилия()} ?: 'Отсутсвует' "
+                                               th:value="${message.getLastName()}"
                                                disabled><br>
                                     </div>
                                 </div>
@@ -170,7 +170,7 @@
                                     </label>
                                     <div class="col-8">
                                         <input type="text" class="form-control" id="FirstName" name="FirstName"
-                                               th:value="${message.getСведЗапрос().getFirst().getСведФЛ().getФИО().getИмя()} ?: 'Отсутсвует' "
+                                               th:value="${message.getFirstName()}"
                                                disabled><br>
                                     </div>
                                 </div>
@@ -180,7 +180,7 @@
                                     </label>
                                     <div class="col-8">
                                         <input type="text" class="form-control" id="Patronymic" name="Patronymic"
-                                               th:value="${message.getСведЗапрос().getFirst().getСведФЛ().getФИО().getОтчество()} ?: 'Отсутсвует' "
+                                               th:value="${message.getPatronymic}"
                                                disabled><br>
                                     </div>
                                 </div>
@@ -189,8 +189,8 @@
                                         Дата рождения (При наличии)
                                     </label>
                                     <div class="col-8">
-                                        <input type="date" class="form-control" id="birthday" name="birthday"
-                                               th:value="${message.getСведЗапрос().getFirst().getСведФЛ().getДатаРождКаленд()} ?: '' "
+                                        <input type="text" class="form-control" id="birthday" name="birthday"
+                                               th:value="${message.getBirthday()}"
                                                disabled><br>
                                     </div>
                                 </div>
@@ -205,8 +205,8 @@
                                             Код документа, удостоверяющего личность
                                         </label>
                                         <div class="col-8">
-                                            <input type="number" class="form-control" id="docCode" name="docCode"
-                                                   th:value="${message.getСведЗапрос().getFirst().getСведФЛ().getУдЛичнФЛ().getКодВидДок()} ?: '' "
+                                            <input type="text" class="form-control" id="docCode" name="docCode"
+                                                   th:value="${message.getDocCode()}"
                                                    disabled><br>
                                         </div>
                                     </div>
@@ -216,7 +216,7 @@
                                         </label>
                                         <div class="col-8">
                                             <input type="text" class="form-control" id="docSeries" name="docSeries"
-                                                   th:value="${message.getСведЗапрос().getFirst().getСведФЛ().getУдЛичнФЛ().getСерДок()} ?: '' "
+                                                   th:value="${message.getDocSeries()}"
                                                    disabled><br>
                                         </div>
                                     </div>
@@ -225,8 +225,8 @@
                                             Номер
                                         </label>
                                         <div class="col-8">
-                                            <input type="number" class="form-control" id="docNumber" name="docNumber"
-                                                   th:value="${message.getСведЗапрос().getFirst().getСведФЛ().getУдЛичнФЛ().getНомДок()} ?: '' "
+                                            <input type="text" class="form-control" id="docNumber" name="docNumber"
+                                                   th:value="${message.getDocNumber()}"
                                                    disabled><br>
                                         </div>
                                     </div>
@@ -235,8 +235,8 @@
                                             Дата выдачи
                                         </label>
                                         <div class="col-8">
-                                            <input type="date" class="form-control" id="docDate" name="docDate"
-                                                   th:value="${message.getСведЗапрос().getFirst().getСведФЛ().getУдЛичнФЛ().getДатаДок()} ?: '' "
+                                            <input type="text" class="form-control" id="docDate" name="docDate"
+                                                   th:value="${message.getDocDate()}"
                                                    disabled><br>
                                         </div>
                                     </div>
@@ -246,7 +246,7 @@
                                         </label>
                                         <div class="col-8">
                                             <textarea type="text" class="form-control" id="orgName" name="orgName"
-                                                      th:text="${message.getСведЗапрос().getFirst().getСведФЛ().getУдЛичнФЛ().getВыдДок()} ?: '' "
+                                                      th:text="${message.getOrgName()}"
                                                       disabled></textarea>
                                         </div>
                                         <br>
@@ -257,8 +257,8 @@
                                             Код подразделения органа, выдавшего документ, удостоверяющий личность
                                         </label>
                                         <div class="col-8">
-                                            <input type="number" class="form-control" id="orgCode" name="orgCode"
-                                                   th:value="${message.getСведЗапрос().getFirst().getСведФЛ().getУдЛичнФЛ().getКодВыдДок()} ?: '' "
+                                            <input type="text" class="form-control" id="orgCode" name="orgCode"
+                                                   th:value="${message.getOrgCode()}"
                                                    disabled><br>
                                         </div>
                                     </div>
@@ -275,7 +275,7 @@
                                     </label>
                                     <div class="col-8">
                                         <textarea type="text" class="form-control" id="subjectName" name="subjectName"
-                                                  th:text="${message.getСведЗапрос().getFirst().getРегионРегАГС()} ?: '' "
+                                                  th:text="${message.getSubjectName}"
                                                   disabled></textarea>
                                     </div>
                                     <br>
