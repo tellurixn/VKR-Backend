@@ -215,6 +215,7 @@ public class MainController {
                                             new MessagePrimaryContent(originalXmlContent.toString()
                                                     .replaceAll("\n", "")
                                                     .replaceAll("\t", "")
+                                                    .replaceAll("\"", "\\\"")
                                             )
                                     )
                             )
@@ -239,7 +240,9 @@ public class MainController {
             headers.setContentType(MediaType.APPLICATION_JSON);
 
             RestTemplate restTemplate = new RestTemplate();
-            HttpEntity<String> requestEntity = new HttpEntity<>(requestToSend, headers);
+            HttpEntity<String> requestEntity = new HttpEntity<>(
+                    requestToSend,
+                    headers);
             String response = restTemplate.postForObject(SEND_URL, requestEntity, String.class);
 
             System.out.println("Sync response: " + response);
@@ -316,7 +319,9 @@ public class MainController {
                                 new Content(
                                         new MessagePrimaryContent(etalon
                                                 .replaceAll("\n", "")
-                                                .replaceAll("\t",""))
+                                                .replaceAll("\t","")
+                                                .replaceAll("\"", "\\\"")
+                                        )
                                 )
                         )
                 )
@@ -340,7 +345,9 @@ public class MainController {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         RestTemplate restTemplate = new RestTemplate();
-        HttpEntity<String> requestEntity = new HttpEntity<>(requestToSend, headers);
+        HttpEntity<String> requestEntity = new HttpEntity<>(
+                requestToSend,
+                headers);
         String response = restTemplate.postForObject(SEND_URL, requestEntity, String.class);
 
         System.out.println("Sync response: " + response);

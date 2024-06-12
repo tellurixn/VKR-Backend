@@ -1,6 +1,7 @@
 package com.example.demo.models.jsons;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class JsonSendRequest {
     private String itSystem;
@@ -12,7 +13,7 @@ public class JsonSendRequest {
     }
 
     public String toJson() {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().disableHtmlEscaping().create();
         return gson.toJson(this);
     }
 

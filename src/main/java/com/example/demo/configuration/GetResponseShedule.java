@@ -68,7 +68,7 @@ public class GetResponseShedule {
 
         }
         else {
-            System.out.println("Cant get response from queue");
+            System.out.println("Cant get response from queue: адаптер не запущен");
         }
     }
 }
