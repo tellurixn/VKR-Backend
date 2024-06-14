@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+h1,h6{
+    text-align: center;
+}
+
+.content h6{
+    font-weight: bold;
+}
+
+.navbar{
+    background-color:#1e3685;
+    height: 50px;
+
+}
+
+.nav-link:hover{
+    color:silver;
+
+}
+
+.nav-link{
+    color: white;
+}
+
+.main-content {
+
+    padding: 20px;
+}
+
+
+.content {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+
+}
+
+.form-group{
+    display: flex;
+}
+
+.request-item{
+    border: thin solid #0059b3;
+    border-radius: 20px;
+}
+
+.circle-green {
+    color: rgb(75, 179, 75);
+}
+
+.circle-red {
+    color: rgb(179, 75, 75);
+}
+
+
+#header{
+    margin-bottom: 20px;
+    margin-left: 25px;
+}
+
+#submitButtonContainer{
+    display: flex;
+    justify-content: center;
+}
+
+#adapterStatus{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    color: white;
+
+}
+
+
+
+

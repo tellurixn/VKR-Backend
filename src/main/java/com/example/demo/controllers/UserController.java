@@ -4,8 +4,9 @@ import com.example.demo.models.db.User;
 import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,19 +19,17 @@ public class UserController {
     }
 
     @GetMapping("/registration")
-    public String registration() {
+    public String registration(){
         return "registration";
     }
 
-
     @PostMapping("/registration")
-    public String createUser(User user) {
-        userService.createUser(user);
+    public String registrate(
+            @RequestParam String username,
+            @RequestParam String password
+    ){
+        userService.createUser(username,password);
         return "redirect:/login";
     }
 
-    @GetMapping("/hello")
-    public String securityUrl() {
-        return "hello";
-    }
 }

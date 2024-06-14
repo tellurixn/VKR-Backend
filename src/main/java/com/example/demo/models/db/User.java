@@ -1,6 +1,7 @@
 package com.example.demo.models.db;
 
-import javax.persistence.*;
+
+import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,10 +1,8 @@
 package com.example.demo.models.db;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-
-
-import javax.persistence.*;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,7 +17,7 @@ import java.time.format.DateTimeFormatter;
 public class ServiceMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    BigInteger uid;//первичный ключ
+    Long uid;//первичный ключ
 
     @Column(nullable = true, unique = false)
     String id;//id клинета
