@@ -4,14 +4,17 @@ body {
     font-family: Arial, sans-serif;
 }
 
-h1,h2,h6{
+h1,h6{
+    text-align: center;
+}
+
+h4{
     text-align: center;
 }
 
 .content h6{
     font-weight: bold;
 }
-
 
 .navbar{
     background-color:#1e3685;
@@ -32,6 +35,7 @@ h1,h2,h6{
     padding: 20px;
 }
 
+
 .content {
     background-color: white;
     padding: 20px;
@@ -41,38 +45,22 @@ h1,h2,h6{
 
 .form-group{
     display: flex;
+    justify-content: center;
 }
 
-.dropdown {
-    width: 100%; /* Устанавливаем ширину dropdown */
-    max-width: 100%; /* Ограничиваем максимальную ширину */
-}
-
-.dropdown-menu {
-    width: 100%; /* Устанавливаем ширину dropdown-menu */
-}
-
-.dropdown-item {
-    white-space: normal; /* Разрешаем перенос текста */
-}
-
-.circle-green {
-    color: rgb(75, 179, 75);
-}
-
-.circle-red {
-    color: rgb(179, 75, 75);
-}
-
-#Filter{
-    padding: 10px;
+.request-item{
     border: thin solid #0059b3;
-    border-radius: 5px;
-    margin-top: 20px;
+    border-radius: 20px;
 }
 
-#historyTable{
-    margin-top: 20px;;
+#header{
+    margin-bottom: 20px;
+    margin-left: 25px;
+}
+
+#submitButtonContainer{
+    display: flex;
+    justify-content: center;
 }
 
 #adapterStatus{
@@ -83,6 +71,10 @@ h1,h2,h6{
     
 }
 
+#adapterStatusIcon{
+    color: rgb(75, 179, 75);
+}
+
 #logout{
     display: flex;
     align-items: flex-start;
@@ -90,4 +82,5 @@ h1,h2,h6{
     margin-left: 20px;
     color: white;
 }
+
 

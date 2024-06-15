@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -11,6 +11,8 @@
 </head>
 
 <body>
+
+    
     <nav class="navbar navbar-expand-lg  ">
 
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -40,8 +42,7 @@
                             <li class="nav-item">
                                 <h6>
                                     Адаптер
-                                    <i th:if="${isAdapterRunning}" class="fa-solid fa-circle circle-green"></i>
-                                    <i th:unless="${isAdapterRunning}" class="fa-solid fa-circle circle-red"></i>
+                                    <i id="adapterStatusIcon" class="fa-solid fa-circle"></i>
                                 </h6>
                             </li>
                             <li id="logout">
@@ -63,57 +64,81 @@
             <div class="row">
                 <div class="col-12">
                     <div class="content">
-                        <div id="header">
-                            <h2>Доступные виды сведений</h2>
-                        </div>
-
+                        
 
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
-                                    <table class="table table-hover table-bordered" id="historyTable">
+                                    <h4 th:text="${user.username}"></h4><br>
+
+                                    <h5>Разрешенные ВС</h5><br>
+                                    <table class="table table-hover table-bordered" id="allowedTable">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Наименование ВС</th>
+                                                <th scope="col">Ниаменование ВС</th>
                                                 <th scope="col">Среда</th>
                                                 <th scope="col"></th>
                                             </tr>
                                         </thead>
-                                        <tr th:if="${types.empty}">
-                                            <td colspan="3"> Нет неразрешенных ВС</td>
-                                        </tr>
                                         <tbody>
-                                            <tr th:each="type : ${types}">
+                                            <tr th:if="${allowed.empty}">
+                                                <td colspan="3"> Нет разрешенных ВС</td>
+                                            </tr>
+                                            <tr th:each="type : ${allowed}">
                                                 <td scope="row" th:text="${type.name}"></td>
                                                 <td th:text="${type.environment}"></td>
                                                 <td>
                                                     <a th:href="${type.path}">
+
                                                         <div class="d-grid gap-2 col-6 mx-auto">
-                                                            <button class="btn btn-outline-primary">Запросить</button>
+                                                            <a th:href="@{/delete_type/{user_id}/{type_id}(type_id=${type.id}, user_id=${user.id})}">
+                                                                <button class="btn btn-outline-primary">Запретить</button>
+                                                            </a>
                                                         </div>
                                                     </a>
                                                 </td>
                                             </tr>
                                         </tbody>
-                                       <!-- <tbody>
+                                    </table>
+
+                                    <br><h5>Доступные ВС</h5><br>
+                                    <table class="table table-hover table-bordered" id="notAllowedTable">
+                                        <thead>
                                         <tr>
-                                            <td scope="row">(Эталонный запрос) Предоставление из ЕГР ЗАГС по запросу сведений о смерти</td>
-                                            <td>Тестовая среда</td>
-                                            <td>
-                                                <a href="/egr_zags_etalon">
-                                                    <div class="d-grid gap-2 col-6 mx-auto">
-                                                        <button class="btn btn-outline-primary">Запросить</button>
-                                                    </div>
-                                                </a>
-                                            </td>
+                                            <th scope="col">Ниаменование ВС</th>
+                                            <th scope="col">Среда</th>
+                                            <th scope="col"></th>
                                         </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:if="${notAllowed.empty}">
+                                                <td colspan="3"> Нет неразрешенных ВС</td>
+                                            </tr>
+                                            <tr th:each="type : ${notAllowed}">
+                                                <td scope="row" th:text="${type.name}"></td>
+                                                <td th:text="${type.environment}"></td>
+                                                <td>
+                                                    <a th:href="${type.path}">
+
+                                                        <div class="d-grid gap-2 col-6 mx-auto">
+                                                            <a th:href="@{/allow/{user_id}/{type_id}(type_id=${type.id}, user_id=${user.id})}">
+                                                                <button class="btn btn-outline-primary">Разрешить</button>
+                                                            </a>
+                                                        </div>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                       <!-- <tbody>
                                             <tr>
                                                 <td scope="row">Предоставление из ЕГР ЗАГС по запросу сведений о смерти</td>
                                                 <td>Тестовая среда</td>
                                                 <td>
-                                                    <a href="/egr_zags">
+                                                    <a href="EGR_ZAGS_Request.html">
                                                         <div class="d-grid gap-2 col-6 mx-auto">
-                                                            <button class="btn btn-outline-primary">Запросить</button>
+                                                            <button class="btn btn-outline-primary">Разрешить</button>
                                                         </div>
                                                     </a>
                                                 </td>
@@ -124,12 +149,15 @@
                                                 <td>Тестовая среда</td>
                                                 <td>
                                                     <div class="d-grid gap-2 col-6 mx-auto">
-                                                        <button class="btn btn-outline-primary disabled">Запросить</button>
+                                                        <button class="btn btn-outline-primary ">Запретить</button>
                                                     </div>
                                                 </td>
                                             </tr>
                                         </tbody>-->
-                                    </table>
+                                    <!--</table>-->
+
+                                    
+
                                 </div>
                             </div>
                         </div>
@@ -139,7 +167,7 @@
         </div>        
     </div>
 
-    <script type="text/javascript" th:src="@{/scripts/main.js}"></script>
+
     <script src="https://kit.fontawesome.com/c7696b05da.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

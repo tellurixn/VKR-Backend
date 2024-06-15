@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -11,8 +11,6 @@
 </head>
 
 <body>
-
-    
     <nav class="navbar navbar-expand-lg  ">
 
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -29,6 +27,11 @@
                                 <a class="nav-link" href="/history">История взаимодействий</a>
                             </li>
 
+                            <div sec:authorize="hasRole('ADMIN')">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/admin">Администрирование</a>
+                                </li>
+                            </div>
                         </ul>
                     </div>
                     <div class="col-6" id="adapterStatus">
@@ -40,6 +43,11 @@
                                     <i th:if="${isAdapterRunning}" class="fa-solid fa-circle circle-green"></i>
                                     <i th:unless="${isAdapterRunning}" class="fa-solid fa-circle circle-red"></i>
                                 </h6>
+                            </li>
+                            <li id="logout">
+                                <a href="/logout">
+                                    <i class="fa-solid fa-arrow-right-from-bracket" style="color: white;"></i>
+                                </a>
                             </li>
 
                         </ul>
@@ -147,8 +155,6 @@
                                 </div>
                             </section>
                         </div>
-
-
 
                         <table class="table table-hover table-bordered" id="historyTable">
                             <thead>

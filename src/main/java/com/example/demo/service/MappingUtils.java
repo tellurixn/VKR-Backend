@@ -1,13 +1,19 @@
 package com.example.demo.service;
 
+
+import com.example.demo.models.db.Role;
+import com.example.demo.models.db.User;
 import com.example.demo.models.dto.EgrZagsRequestDto;
 import com.example.demo.models.dto.EgrZagsResponseDto;
+import com.example.demo.models.dto.UserDto;
 import com.example.demo.models.xmls.root.FATALINFRequest;
 import com.example.demo.models.xmls.root.FATALINFResponse;
 import org.springframework.stereotype.Service;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.time.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MappingUtils {
@@ -308,4 +314,36 @@ public class MappingUtils {
         return dto;
     }
 
+    public UserDto mapToUserDto(User user){
+        UserDto userDto = new UserDto();
+        String role = "";
+        if(user.getRoles().contains(Role.ROLE_ADMIN))
+            role = "Админ";
+        else role = "Пользователь";
+        userDto.setId(user.getId());
+        userDto.setUsername(user.getUsername());
+        userDto.setRole(role);
+
+        return userDto;
+    }
+
+    public List<UserDto> mapToUserDto(List<User> users){
+        List<UserDto> listUserDto = new ArrayList<>();
+        String role = "";
+
+        for(User user :users){
+            UserDto dto = new UserDto();
+
+            if(user.getRoles().contains(Role.ROLE_ADMIN))
+                role = "Админ";
+            else role = "Пользователь";
+            dto.setId(user.getId());
+            dto.setUsername(user.getUsername());
+            dto.setRole(role);
+            listUserDto.add(dto);
+        }
+
+
+        return listUserDto;
+    }
 }

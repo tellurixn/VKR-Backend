@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -11,6 +11,8 @@
 </head>
 
 <body>
+
+    
     <nav class="navbar navbar-expand-lg  ">
 
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -26,7 +28,6 @@
                             <li class="nav-item ">
                                 <a class="nav-link" href="/history">История взаимодействий</a>
                             </li>
-
                             <div sec:authorize="hasRole('ADMIN')">
                                 <li class="nav-item ">
                                     <a class="nav-link" href="/admin">Администрирование</a>
@@ -40,8 +41,7 @@
                             <li class="nav-item">
                                 <h6>
                                     Адаптер
-                                    <i th:if="${isAdapterRunning}" class="fa-solid fa-circle circle-green"></i>
-                                    <i th:unless="${isAdapterRunning}" class="fa-solid fa-circle circle-red"></i>
+                                    <i id="adapterStatusIcon" class="fa-solid fa-circle"></i>
                                 </h6>
                             </li>
                             <li id="logout">
@@ -63,73 +63,51 @@
             <div class="row">
                 <div class="col-12">
                     <div class="content">
-                        <div id="header">
-                            <h2>Доступные виды сведений</h2>
-                        </div>
-
+                        
 
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
+                                    <div class="d-grid gap-2 col-1 mx-auto">
+                                        <h4>Пользователи</h4>
+                                        <a href="/user_create">
+                                            <button class="btn btn-outline-primary" style="display: flex; justify-content: center;">
+                                                Добавить
+                                            </button>
+                                        </a>
+                                    </div><br>
                                     <table class="table table-hover table-bordered" id="historyTable">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Наименование ВС</th>
-                                                <th scope="col">Среда</th>
+                                                <th scope="col">Имя пользователя</th>
+                                                <th scope="col">Роль</th>
+                                                <th scope="col"></th>
                                                 <th scope="col"></th>
                                             </tr>
                                         </thead>
-                                        <tr th:if="${types.empty}">
-                                            <td colspan="3"> Нет неразрешенных ВС</td>
-                                        </tr>
                                         <tbody>
-                                            <tr th:each="type : ${types}">
-                                                <td scope="row" th:text="${type.name}"></td>
-                                                <td th:text="${type.environment}"></td>
+                                            <tr th:each="user : ${users}">
+                                                <td scope="row" th:text="${user.username}"></td>
+                                                <td th:text="${user.role}"></td>
                                                 <td>
-                                                    <a th:href="${type.path}">
+                                                    <a th:href="@{/edit_user/{id}(id=${user.id})}">
+                                                    <div class="d-grid gap-2 col-6 mx-auto">
+                                                            <button class="btn btn-outline-primary">Просмотр</button>
+                                                        </div>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a th:href="@{/delete_user/{id}(id=${user.id})}">
                                                         <div class="d-grid gap-2 col-6 mx-auto">
-                                                            <button class="btn btn-outline-primary">Запросить</button>
+                                                            <button class="btn btn-outline-primary">Удалить</button>
                                                         </div>
                                                     </a>
                                                 </td>
                                             </tr>
                                         </tbody>
-                                       <!-- <tbody>
-                                        <tr>
-                                            <td scope="row">(Эталонный запрос) Предоставление из ЕГР ЗАГС по запросу сведений о смерти</td>
-                                            <td>Тестовая среда</td>
-                                            <td>
-                                                <a href="/egr_zags_etalon">
-                                                    <div class="d-grid gap-2 col-6 mx-auto">
-                                                        <button class="btn btn-outline-primary">Запросить</button>
-                                                    </div>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                            <tr>
-                                                <td scope="row">Предоставление из ЕГР ЗАГС по запросу сведений о смерти</td>
-                                                <td>Тестовая среда</td>
-                                                <td>
-                                                    <a href="/egr_zags">
-                                                        <div class="d-grid gap-2 col-6 mx-auto">
-                                                            <button class="btn btn-outline-primary">Запросить</button>
-                                                        </div>
-                                                    </a>
-                                                </td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td scope="row">Выписка из ЕГРИП</td>
-                                                <td>Тестовая среда</td>
-                                                <td>
-                                                    <div class="d-grid gap-2 col-6 mx-auto">
-                                                        <button class="btn btn-outline-primary disabled">Запросить</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>-->
                                     </table>
+
+                                    
                                 </div>
                             </div>
                         </div>
@@ -139,7 +117,6 @@
         </div>        
     </div>
 
-    <script type="text/javascript" th:src="@{/scripts/main.js}"></script>
     <script src="https://kit.fontawesome.com/c7696b05da.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

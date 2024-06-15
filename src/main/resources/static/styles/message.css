@@ -91,3 +91,10 @@ textarea{
     border-color: #0059b3;
 }
 
+#logout{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 20px;
+    color: white;
+}
