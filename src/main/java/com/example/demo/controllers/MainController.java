@@ -108,8 +108,7 @@ public class MainController {
 
     @GetMapping("/egr_zags")
     public String egr_zags(
-            Model model,
-            Principal principal
+            Model model
     ) {
         boolean isAdapterRunning = checkIfServiceRunning(SERVICE_NAME);
         boolean isAdapterStarted = true;

@@ -13,6 +13,7 @@ import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,6 +46,7 @@ public class UserController {
         return "login";
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/admin")
     public String admin(Model model) {
         List<User> users = userRepository.findAll();
@@ -61,6 +63,7 @@ public class UserController {
         return "admin";
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/edit_user/{id}")
     public String edit_user(
             @PathVariable String id,
@@ -84,8 +87,8 @@ public class UserController {
         List<InfoType> allowed = user.get().getTypes();
         List<InfoType> notAllowed = new ArrayList<>();
         if(!allowed.isEmpty()) {
-            for (InfoType type : allowed) {
-                if (!all.contains(type))
+            for (InfoType type : all) {
+                if (!allowed.contains(type))
                     notAllowed.add(type);
             }
         }
@@ -99,10 +102,12 @@ public class UserController {
         return "edit_user";
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/user_create")
     public String user_create() {
         return "user_create";
     }
+
 
     @GetMapping("/registration")
     public String registration(){
@@ -118,6 +123,7 @@ public class UserController {
         return "redirect:/login";
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/user_create")
     public String create(
             @RequestParam String username,
@@ -133,6 +139,7 @@ public class UserController {
         return "redirect:/admin";
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/delete_user/{id}")
     public String delete_user(
             @PathVariable String id
@@ -141,6 +148,7 @@ public class UserController {
         return "redirect:/admin";
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/allow/{user_id}/{type_id}")
     public String allow(
             @PathVariable String user_id,
@@ -158,6 +166,7 @@ public class UserController {
         return "redirect:" + redirectUrl;
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/delete_type/{user_id}/{type_id}")
     public String delete_type(
             @PathVariable String user_id,

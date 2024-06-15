@@ -45,7 +45,9 @@
                                 </h6>
                             </li>
                             <li id="logout">
+                                <div sec:authentication="name" style="margin-right: 10px;"></div>
                                 <a href="/logout">
+
                                     <i class="fa-solid fa-arrow-right-from-bracket" style="color: white;"></i>
                                 </a>
                             </li>
@@ -87,7 +89,7 @@
                                                 <td scope="row" th:text="${type.name}"></td>
                                                 <td th:text="${type.environment}"></td>
                                                 <td>
-                                                    <a th:href="${type.path}">
+                                                    <a th:href="@{/{path}(path=${type.path})}">
                                                         <div class="d-grid gap-2 col-6 mx-auto">
                                                             <button class="btn btn-outline-primary">Запросить</button>
                                                         </div>
